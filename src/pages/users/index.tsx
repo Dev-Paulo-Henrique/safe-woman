@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useQuery } from 'react-query'
 
 export default function UserList(){
-  const { data, isLoading, error } = useQuery('users', async () => {
+  const { data, isLoading, isFetching, error } = useQuery('users', async () => {
     const response = await fetch('http://localhost:3000/api/users')
     const data = await response.json()
     const users = data.users.map(user => {
@@ -40,7 +40,10 @@ export default function UserList(){
       <Sidebar/>
       <Box flex="1"  borderRadius={8} bg="gray.800" p="8">
       <Flex mb="8" justify="space-between" align="center">
-        <Heading size="lg" fontWeight="normal">Usuários</Heading>
+        <Heading size="lg" fontWeight="normal">
+          Usuários
+          { !isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4"/> }
+          </Heading>
         <Link href="users/create" passHref>
         <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiAddLine} fontSize="20"/>}>
           Criar novo
