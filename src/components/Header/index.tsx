@@ -2,7 +2,6 @@ import { Flex, useBreakpointValue, IconButton, Icon } from '@chakra-ui/react'
 import { Profile } from './Profile'
 import { NotificationsNav } from './NotificationsNav'
 import { SearchBox } from './SearchBox'
-import { RiNotificationLine } from 'react-icons/ri'
 import { Logo } from './Logo'
 import { useSidebarDrawer } from '../../contexts/SidebarDrawerContext'
 import { RiMenuLine } from 'react-icons/ri'
@@ -25,7 +24,7 @@ export function Header() {
       <Logo/>
       <Flex align="center" ml="auto" >
         { isWideVersion &&  <SearchBox/> }
-        <NotificationsNav icon={RiNotificationLine} href="/notifications"/>
+        <NotificationsNav icon={'symbol'} href={''}/>
         <Profile showProfileData={isWideVersion}/>
       </Flex>
     </Flex>
