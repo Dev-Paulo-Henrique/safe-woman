@@ -1,14 +1,15 @@
 import { Box, Flex, Heading, Button, Icon, Table, Thead, Tr, Th, Checkbox, Tbody, Td, Text, useBreakpointValue, Spinner, Link } from "@chakra-ui/react";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
-import { Header } from "../../components/Header";
-import Pagination from "../../components/Pagination";
-import { Sidebar } from "../../components/Sidebar";
+import { Header } from "../components/Header";
+import Pagination from "../components/Pagination";
+import { Sidebar } from "../components/Sidebar";
 import NextLink from 'next/link'
-import { getUsers, useUsers } from "../../services/hooks/useUsers";
+import { getUsers, useUsers } from "../services/hooks/useUsers";
 import { useState,  } from "react";
-import { queryClient } from "../../services/queryClient";
-import { api } from "../../services/api";
+import { queryClient } from "../services/queryClient";
+import { api } from "../services/api";
 import { GetServerSideProps } from "next";
+import { theme } from "../styles/theme";
 
 export default function UserList({ users }){
   const [page, setPage] = useState(1)
@@ -31,21 +32,28 @@ export default function UserList({ users }){
   }
 
   return(
-    <Box>
+    <Box direction="column" h="100vh" overflowY="auto"
+    css={{
+      '&::-webkit-scrollbar': {
+        width: '4px',
+      },
+      '&::-webkit-scrollbar-track': {
+        width: '6px',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        background: theme.colors.gray[600],
+        borderRadius: '24px',
+      },
+    }}>
       <Header/>
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
       <Sidebar/>
       <Box flex="1"  borderRadius={8} bg="gray.800" p="8">
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight="normal">
-          Usuários
+          Relatos
           { !isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4"/> }
           </Heading>
-        <NextLink href="users/create" passHref>
-        <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiAddLine} fontSize="20"/>}>
-          Criar novo
-        </Button>
-        </NextLink>
       </Flex>
       {/* { isLoading ? (
         <Flex justify="center" >
@@ -107,19 +115,25 @@ export default function UserList({ users }){
       <Table colorScheme="whiteAlpha">
         <Thead>
           <Tr>
-            <Th px={["4","4","6"]} color="gray.300" width="8">
-              <Checkbox colorScheme="pink"/>
-            </Th>
             <Th>Usuário</Th>
-            { isWideVersion && <Th>Data de cadastro</Th> }
-            <Th width="8"></Th>
+            { isWideVersion && <Th>Data</Th> }
+            <Th>Local</Th>
           </Tr>
         </Thead>
         <Tbody>
               <Tr>
-            <Td  px={["4","4","6"]}>
-            <Checkbox colorScheme="pink"/>
+            <Td>
+              <Box>
+                <Link color="pink.400" onMouseEnter={() => {}}> {/*RELATO AO CLICAR NO LINK*/}
+                <Text fontWeight="bold">Paulo Henrique</Text>
+                </Link>
+                <Text fontSize="sm" color="gray.300">Gato@miau.com</Text>
+              </Box>
             </Td>
+            { isWideVersion && <Td>22/02/2022</Td> }
+            <Td>Recife</Td>
+          </Tr>            
+              <Tr>
             <Td>
               <Box>
                 <Link color="pink.400" onMouseEnter={() => {}}>
@@ -128,12 +142,32 @@ export default function UserList({ users }){
                 <Text fontSize="sm" color="gray.300">Gato@miau.com</Text>
               </Box>
             </Td>
-            { isWideVersion && <Td>22 de Abril de 2021</Td> }
-            { isWideVersion && <Td>
-            <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiPencilLine} fontSize="16"/>}>
-          { isWideVersion ? 'Editar' : '' }
-        </Button>
-            </Td> }
+            { isWideVersion && <Td>22/02/2022</Td> }
+            <Td>Recife</Td>
+          </Tr>            
+              <Tr>
+            <Td>
+              <Box>
+                <Link color="pink.400" onMouseEnter={() => {}}>
+                <Text fontWeight="bold">Paulo Henrique</Text>
+                </Link>
+                <Text fontSize="sm" color="gray.300">Gato@miau.com</Text>
+              </Box>
+            </Td>
+            { isWideVersion && <Td>22/02/2022</Td> }
+            <Td>Recife</Td>
+          </Tr>            
+              <Tr>
+            <Td>
+              <Box>
+                <Link color="pink.400" onMouseEnter={() => {}}>
+                <Text fontWeight="bold">Paulo Henrique</Text>
+                </Link>
+                <Text fontSize="sm" color="gray.300">Gato@miau.com</Text>
+              </Box>
+            </Td>
+            { isWideVersion && <Td>22/02/2022</Td> }
+            <Td>Recife</Td>
           </Tr>            
         </Tbody>
       </Table>

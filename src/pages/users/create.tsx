@@ -11,6 +11,7 @@ import { api } from "../../services/api";
 import { queryClient } from "../../services/queryClient";
 import { useRouter } from "next/router";
 
+
 type CreateUserFormData = {
   name: string;
   email: string;
@@ -52,6 +53,7 @@ export default function CreateUser(){
   const handleCreateUser: SubmitHandler<CreateUserFormData> = async (values) => {
     await createUser.mutateAsync(values)
   }
+
   return(
     <Box>
       <Header/>

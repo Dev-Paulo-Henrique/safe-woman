@@ -10,7 +10,7 @@ export function Profile({showProfileData = true}: ProfileProps) {
     { showProfileData && (
       <Box mr="4" textAlign="right">
       <Text>Paulo Henrique</Text>
-      <Text color="gray.300" fontSize="small">paulinho@gmail.com</Text>
+      <Text color="gray.300" fontSize="small">gato@miau.com</Text>
     </Box>
     )}
     <Avatar size="md" name="Paulo Henrique" src="https://github.com/Dev-Paulo-Henrique.png"/> 
