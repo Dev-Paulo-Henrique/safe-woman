@@ -10,9 +10,19 @@ import { queryClient } from "../services/queryClient";
 import { api } from "../services/api";
 import { GetServerSideProps } from "next";
 import { theme } from "../styles/theme";
+import { database, onValue, ref } from "../services/firebase";
+import Modal from "react-modal";
+
 
 export default function UserList({ users }){
   const [page, setPage] = useState(1)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [ username, setUsername ] = useState('')
+  const [ local, setLocal ] = useState('')
+  const [ date, setDate ] = useState('')
+  const [ email, setEmail ] = useState('')
+  const [ description, setDescription ] = useState('')
+
   const { data, isLoading, isFetching, error } = useUsers(page, {
     initialData: users,
   })
@@ -30,6 +40,18 @@ export default function UserList({ users }){
       staleTime: 1000 * 60 * 10
     })
   }
+
+
+  const roomRef = ref(database, 'forms/');
+onValue(roomRef, (snapshot) => {
+  setUsername(snapshot.val().username)
+  setLocal(snapshot.val().local)
+  setDate(snapshot.val().date)
+  setEmail(snapshot.val().email)
+  setDescription(snapshot.val().description)
+  }, {
+    onlyOnce: true
+  })
 
   return(
     <Box direction="column" h="100vh" overflowY="auto"
@@ -124,51 +146,15 @@ export default function UserList({ users }){
               <Tr>
             <Td>
               <Box>
-                <Link color="pink.400" onMouseEnter={() => {}}> {/*RELATO AO CLICAR NO LINK*/}
-                <Text fontWeight="bold">Paulo Henrique</Text>
+                <Link color="pink.400" onClick={() => setIsModalOpen(true)}> {/*RELATO AO CLICAR NO LINK*/}
+                <Text fontWeight="bold">{username}</Text>
                 </Link>
-                <Text fontSize="sm" color="gray.300">Gato@miau.com</Text>
+                <Text fontSize="sm" color="gray.300">{email}</Text>
               </Box>
             </Td>
-            { isWideVersion && <Td>22/02/2022</Td> }
-            <Td>Recife</Td>
-          </Tr>            
-              <Tr>
-            <Td>
-              <Box>
-                <Link color="pink.400" onMouseEnter={() => {}}>
-                <Text fontWeight="bold">Paulo Henrique</Text>
-                </Link>
-                <Text fontSize="sm" color="gray.300">Gato@miau.com</Text>
-              </Box>
-            </Td>
-            { isWideVersion && <Td>22/02/2022</Td> }
-            <Td>Recife</Td>
-          </Tr>            
-              <Tr>
-            <Td>
-              <Box>
-                <Link color="pink.400" onMouseEnter={() => {}}>
-                <Text fontWeight="bold">Paulo Henrique</Text>
-                </Link>
-                <Text fontSize="sm" color="gray.300">Gato@miau.com</Text>
-              </Box>
-            </Td>
-            { isWideVersion && <Td>22/02/2022</Td> }
-            <Td>Recife</Td>
-          </Tr>            
-              <Tr>
-            <Td>
-              <Box>
-                <Link color="pink.400" onMouseEnter={() => {}}>
-                <Text fontWeight="bold">Paulo Henrique</Text>
-                </Link>
-                <Text fontSize="sm" color="gray.300">Gato@miau.com</Text>
-              </Box>
-            </Td>
-            { isWideVersion && <Td>22/02/2022</Td> }
-            <Td>Recife</Td>
-          </Tr>            
+            { isWideVersion && <Td>{date}</Td> }
+            <Td>{local}</Td>
+          </Tr>                                          
         </Tbody>
       </Table>
       <Pagination
@@ -176,6 +162,60 @@ export default function UserList({ users }){
       currentPage={page}
       onPageChange={setPage}
       />
+      <Modal
+          isOpen={isModalOpen}
+          ariaHideApp={false}
+          onRequestClose={() => setIsModalOpen(false)}
+          contentLabel="Ver comentário"
+          style={{
+            overlay: {
+              backgroundColor: "rgba(0, 0, 0, 0.90)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            },
+            content: {
+              position: "initial",
+              width: "37rem",
+              maxWidth: "90vw",
+              height: "23rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "0",
+              border: "none",
+              background: "transparent",
+            },
+          }}
+        >
+          <Flex h="100%" w="100%" flexDirection="column" justifyContent="center" alignItems="center">
+
+            <Text fontWeight="bold" fontSize="25" mt="6rem"  textAlign="center">Relato de {username}</Text>
+            <Text mb="2rem" overflowY="auto"
+    css={{
+      '&::-webkit-scrollbar': {
+        width: '4px',
+      },
+      '&::-webkit-scrollbar-track': {
+        width: '6px',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        background: theme.colors.pink[500],
+        borderRadius: '24px',
+      },
+      '&::selection': {
+        background: theme.colors.pink[500],
+      },
+    }}>{description}</Text>
+              <Button p="0.875rem 2rem" bg={theme.colors.pink[500]} border="1px solid transparent" borderRadius="0.5rem" _hover={{
+      bg: theme.colors.pink[600]
+    }} type="button" onClick={() => setIsModalOpen(false)}>
+                Voltar
+              </Button>
+          </Flex>
+        </Modal>
       </Box>
       </Flex>
     </Box>

@@ -7,35 +7,24 @@ import Link from 'next/link'
 import { theme } from "../styles/theme";
 import toast, { Toaster } from 'react-hot-toast';
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
+import { database, ref, set } from "../services/firebase";
 import { useState } from "react";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBl_xXu8vkF_z_Qs1pTYCAcOYUE2z_RO88",
-  authDomain: "safewoman22.firebaseapp.com",
-  projectId: "safewoman22",
-  storageBucket: "safewoman22.appspot.com",
-  messagingSenderId: "880829612224",
-  appId: "1:880829612224:web:731b048d16e8c787da6d25",
-  measurementId: "G-R9NTPGP9KC"
-};
-
-initializeApp(firebaseConfig);
 
 export default function CreateUser(){
   const [ username, setUsername ] = useState('')
   const [ local, setLocal ] = useState('')
   const [ date, setDate ] = useState('')
+  const [ email, setEmail ] = useState('')
   const [ description, setDescription ] = useState('')
 
   function handleSubmit(event){
     event.preventDefault
     try {
-      const db = getDatabase();
-  set(ref(db, 'forms/' ), {//Após forms, colocar id do usuário
+  set(ref(database, 'forms/' ), {//Após forms, colocar id do usuário
     username: username,
     local: local,
     date: date,
+    email: email,
     description: description,
   });
       toast.success('Ocorrência registrada', {
@@ -73,6 +62,7 @@ export default function CreateUser(){
       <Divider my="6" borderColor="gray.700"/>
       <VStack spacing="8">
         <Input name="name" type="text" label="Nome" onChange={(event) => setUsername(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}}/>
+        <Input name="email" type="email" label="E-mail" onChange={(event) => setEmail(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}}/>
         <Input name="local" type="search" label="Local" onChange={(event) => setLocal(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}}/>
         <Input name="date" type="date" label="Data" cursor="pointer" onChange={(event) => setDate(event.target.value)}/>
         <TextArea name="description" label="Descrição" onChange={(event) => setDescription(event.target.value)} overflowY="auto"
@@ -88,7 +78,7 @@ export default function CreateUser(){
         borderRadius: '24px',
       },
       '&::selection': {
-        background: theme.colors.pink[400],
+        background: theme.colors.pink[500],
       },
     }}/>
       </VStack>
