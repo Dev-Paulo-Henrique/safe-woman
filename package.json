@@ -1,5 +1,5 @@
 {
-  "name": "dashgo",
+  "name": "safe-woman",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,16 +14,23 @@
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@hookform/resolvers": "^2.8.3",
+    "@stripe/stripe-js": "^1.27.0",
     "apexcharts": "^3.29.0",
     "axios": "^0.24.0",
+    "faunadb": "^4.5.4",
+    "firebase": "^9.6.10",
     "framer-motion": "^4.1.17",
     "next": "11.1.2",
+    "next-auth": "^4.3.2",
     "react": "17.0.2",
     "react-apexcharts": "^1.3.9",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.20.5",
+    "react-hot-toast": "^2.2.0",
     "react-icons": "^4.3.1",
+    "react-modal": "^3.14.4",
     "react-query": "^3.34.0",
+    "stripe": "^8.217.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
