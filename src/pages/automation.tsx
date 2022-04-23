@@ -10,6 +10,7 @@ import { useMutation } from 'react-query'
 import { api } from "./../services/api";
 import { queryClient } from "./../services/queryClient";
 import { useRouter } from "next/router";
+import { theme } from "../styles/theme";
 
 // type CreateUserFormData = {
 //   name: string;
@@ -53,7 +54,19 @@ export default function CreateUser(){
 //     await createUser.mutateAsync(values)
 //   }
   return(
-    <Box>
+    <Box direction="column" h="100vh" overflowY="auto"
+    css={{
+      '&::-webkit-scrollbar': {
+        width: '4px',
+      },
+      '&::-webkit-scrollbar-track': {
+        width: '6px',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        background: theme.colors.gray[600],
+        borderRadius: '24px',
+      },
+    }}>
       <Header/>
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
       <Sidebar/>

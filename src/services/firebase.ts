@@ -1,7 +1,7 @@
-import { initializeApp } from 'firebase/app';
+import firebase from "firebase/app";
 
-// import "firebase/auth";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+import "firebase/auth";
+import "firebase/database";
 
 const firebaseConfig = {
 apiKey: "AIzaSyBl_xXu8vkF_z_Qs1pTYCAcOYUE2z_RO88",
@@ -14,10 +14,14 @@ appId: "1:880829612224:web:731b048d16e8c787da6d25",
 measurementId: "G-R9NTPGP9KC"
 };
 
-const app = initializeApp(firebaseConfig);
+if(!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+ }else {
+    firebase.app();
+ }
 
-// const auth = firebase.auth();
-const database = getDatabase(app);
-console.log(app)
+const auth = firebase.auth();
+const database = firebase.database();
 
-export { database, ref, set, onValue };
+
+export { firebase, auth, database };

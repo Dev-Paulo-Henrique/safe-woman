@@ -10,11 +10,20 @@ import { queryClient } from "../services/queryClient";
 import { api } from "../services/api";
 import { GetServerSideProps } from "next";
 import { theme } from "../styles/theme";
-import { database, onValue, ref } from "../services/firebase";
+// import { database, onValue, ref, onChildAdded } from "../services/firebase";
 import Modal from "react-modal";
+// import useRoom from "../services/hooks/useRoom";
+// import { useRouter } from "next/router";
+
+type RoomQueryParams = {
+  id?: string;
+};
 
 
 export default function UserList({ users }){
+  // const router = useRouter();
+  // const { id: roomId }: RoomQueryParams = router.query;
+  // const { questions } = useRoom(roomId);
   const [page, setPage] = useState(1)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [ username, setUsername ] = useState('')
@@ -42,16 +51,16 @@ export default function UserList({ users }){
   }
 
 
-  const roomRef = ref(database, 'forms/');
-onValue(roomRef, (snapshot) => {
-  setUsername(snapshot.val().username)
-  setLocal(snapshot.val().local)
-  setDate(snapshot.val().date)
-  setEmail(snapshot.val().email)
-  setDescription(snapshot.val().description)
-  }, {
-    onlyOnce: true
-  })
+//   const roomRef = ref(database, 'forms/');
+// onChildAdded(roomRef, (snapshot) => {
+//   setUsername(snapshot.val().username)
+//   setLocal(snapshot.val().local)
+//   setDate(snapshot.val().date)
+//   setEmail(snapshot.val().email)
+//   setDescription(snapshot.val().description)
+//   }, {
+//     onlyOnce: true
+//   })
 
   return(
     <Box direction="column" h="100vh" overflowY="auto"
@@ -143,18 +152,18 @@ onValue(roomRef, (snapshot) => {
           </Tr>
         </Thead>
         <Tbody>
-              <Tr>
-            <Td>
-              <Box>
-                <Link color="pink.400" onClick={() => setIsModalOpen(true)}> {/*RELATO AO CLICAR NO LINK*/}
-                <Text fontWeight="bold">{username}</Text>
-                </Link>
-                <Text fontSize="sm" color="gray.300">{email}</Text>
-              </Box>
-            </Td>
-            { isWideVersion && <Td>{date}</Td> }
-            <Td>{local}</Td>
-          </Tr>                                          
+        <Tr>
+      <Td>
+        <Box>
+          <Link color="pink.400" onClick={() => setIsModalOpen(true)}> {/*RELATO AO CLICAR NO LINK*/}
+          <Text fontWeight="bold">Paulo Santos</Text>
+          </Link>
+          <Text fontSize="sm" color="gray.300">gato@miau.com</Text>
+        </Box>
+      </Td>
+      { isWideVersion && <Td>18/03/2004</Td> }
+      <Td>Recife</Td>
+    </Tr> 
         </Tbody>
       </Table>
       <Pagination
@@ -192,7 +201,7 @@ onValue(roomRef, (snapshot) => {
         >
           <Flex h="100%" w="100%" flexDirection="column" justifyContent="center" alignItems="center">
 
-            <Text fontWeight="bold" fontSize="25" mt="6rem"  textAlign="center">Relato de {username}</Text>
+            <Text fontWeight="bold" fontSize="25" mt="6rem"  textAlign="center">Relato de Paulo Santos</Text>
             <Text mb="2rem" overflowY="auto"
     css={{
       '&::-webkit-scrollbar': {
@@ -208,7 +217,7 @@ onValue(roomRef, (snapshot) => {
       '&::selection': {
         background: theme.colors.pink[500],
       },
-    }}>{description}</Text>
+    }}>HEHE</Text>
               <Button p="0.875rem 2rem" bg={theme.colors.pink[500]} border="1px solid transparent" borderRadius="0.5rem" _hover={{
       bg: theme.colors.pink[600]
     }} type="button" onClick={() => setIsModalOpen(false)}>

@@ -9,6 +9,7 @@ import { useState,  } from "react";
 import { queryClient } from "../../services/queryClient";
 import { api } from "../../services/api";
 import { GetServerSideProps } from "next";
+import { theme } from "../../styles/theme";
 
 export default function UserList({ users }){
   const [page, setPage] = useState(1)
@@ -31,7 +32,19 @@ export default function UserList({ users }){
   }
 
   return(
-    <Box>
+    <Box direction="column" h="100vh" overflowY="auto"
+    css={{
+      '&::-webkit-scrollbar': {
+        width: '4px',
+      },
+      '&::-webkit-scrollbar-track': {
+        width: '6px',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        background: theme.colors.gray[600],
+        borderRadius: '24px',
+      },
+    }}>
       <Header/>
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
       <Sidebar/>
