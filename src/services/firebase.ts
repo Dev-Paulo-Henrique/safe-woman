@@ -20,8 +20,8 @@ measurementId: "G-R9NTPGP9KC"
 //     firebase.app();
 //  }
 
-const auth = firebase.auth();
+// const auth = firebase.auth();
 const database = firebase.database();
 
 
-export { firebase, auth, database };
+export { firebase, database };
