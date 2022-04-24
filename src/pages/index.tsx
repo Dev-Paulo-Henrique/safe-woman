@@ -5,7 +5,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { GetStaticProps } from 'next'
 import toast, { Toaster } from 'react-hot-toast';
-import { useAuth } from '../services/hooks/useAuth'
+// import { useAuth } from '../services/hooks/useAuth'
 import { useRouter } from "next/router";
 // import { auth } from '../services/firebase'
 import { database } from "../services/firebase";
@@ -24,7 +24,7 @@ const signInFormSchema = yup.object().shape({
 
 export default function SignIn() {
   const router = useRouter()
-  const { user, signInWithGoogle } = useAuth();
+  // const { user, signInWithGoogle } = useAuth();
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const { register, handleSubmit, formState } = useForm({
@@ -62,11 +62,6 @@ export default function SignIn() {
   }
 
   function handleLogin() {
-    database.ref('forms/').set({
-      oi: "oi"
-    });
-
-
     router.push('/dashboard')
   }
   
@@ -80,7 +75,7 @@ export default function SignIn() {
          </Stack>
          <Button type="submit" mt="6" colorScheme="pink"  size="lg" isLoading={formState.isSubmitting}>Entrar</Button>
         </Flex>
-         <Button type="button" mt="6" colorScheme="pink"  size="lg" isLoading={formState.isSubmitting} onClick={handleLogin}>Login</Button>
+         {/* <Button type="button" mt="6" colorScheme="pink"  size="lg" isLoading={formState.isSubmitting} onClick={handleLogin}>Login</Button> */}
     </Flex>
   )
 }

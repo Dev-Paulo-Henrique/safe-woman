@@ -1,4 +1,4 @@
-import { database, ref, set, onValue } from "../firebase";
+// import { database, ref, set, onValue } from "../firebase";
 
 import Router from "next/router";
 import { useState, useEffect } from "react";
@@ -29,12 +29,12 @@ export default function useRoom(roomId: string) {
   const [title, setTitle] = useState("");
 
   useEffect(() => {
-  const roomRef = ref(database, `forms/${roomId}`);
-  console.log('amore', roomRef)
+  // const roomRef = ref(database, `forms/${roomId}`);
+  // console.log('amore', roomRef)
     
 
-    onValue(roomRef, (room) => {
-      const databaseRoom = room.val();
+    // onValue(roomRef, (room) => {
+      // const databaseRoom = room.val();
 
       // if(databaseRoom?.closedAt && (user?.id !== databaseRoom?.authorId)) {
       //   toast.error("Sala foi encerrada pelo admin", {
@@ -55,24 +55,24 @@ export default function useRoom(roomId: string) {
       //   // };
       // }
 
-      const firebaseQuestions: FirebaseQuestions =
-        databaseRoom?.questions ?? {};
+      // const firebaseQuestions: FirebaseQuestions =
+        // databaseRoom?.questions ?? {};
 
-      console.log('oi',databaseRoom);
+      // console.log('oi',databaseRoom);
 
-      const parsedQuestions = Object.entries(firebaseQuestions).map(
-        ([key, value]) => {
-          return {
-            id: key,
-            description: value.description,
-            username: value.username,
-            email: value.email,
-            date: value.date,
-            local: value.local,
-          };
-        }
-      );
-      console.log(parsedQuestions)
+      // const parsedQuestions = Object.entries(firebaseQuestions).map(
+      //   ([key, value]) => {
+      //     return {
+      //       id: key,
+      //       description: value.description,
+      //       username: value.username,
+      //       email: value.email,
+      //       date: value.date,
+      //       local: value.local,
+      //     };
+      //   }
+      // );
+      // console.log(parsedQuestions)
 
       // const orderQuestionsByLikeCount = parsedQuestions.sort((roomA, roomB) =>
       //   roomA.type < roomB.type ? -1 : roomA.type > roomB.type ? 1 : 0
@@ -84,12 +84,12 @@ export default function useRoom(roomId: string) {
 
       // setTitle(databaseRoom?.title);
       // setQuestions(orderQuestionByNotAnswer);
-    });
+    // });
 
     // return () => {
     //   roomRef.off("value");
     // };
-  }, [roomId]);
+  }, []);
 
   return { questions, title };
 }
