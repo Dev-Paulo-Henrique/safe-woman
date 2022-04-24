@@ -29,7 +29,7 @@ export default function CreateUser(){
       description: description,
     }
 
-    toast(question)
+    console.log(question)
     // database.ref('forms/').push(question);
   }
 
