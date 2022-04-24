@@ -14,11 +14,11 @@ appId: "1:880829612224:web:731b048d16e8c787da6d25",
 measurementId: "G-R9NTPGP9KC"
 };
 
-if(!firebase.apps.length) {
+// if(!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
- }else {
-    firebase.app();
- }
+//  }else {
+//     firebase.app();
+//  }
 
 const auth = firebase.auth();
 const database = firebase.database();
