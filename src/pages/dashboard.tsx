@@ -27,7 +27,7 @@ const options = {
     enabled: false,
   },
   xaxis: {
-    type: 'category',
+    // type: "category",
     axisBorder: {
       color: theme.colors.gray[600]
     },
