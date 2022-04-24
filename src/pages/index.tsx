@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 // import { useAuth } from '../services/hooks/useAuth'
 import { useRouter } from "next/router";
 // import { auth } from '../services/firebase'
-import { database } from "../services/firebase";
+// import { database } from "../services/firebase";
 import { useState } from 'react'
 
 
@@ -59,10 +59,6 @@ export default function SignIn() {
   //     position: 'bottom-center',
   //   });
   // });
-  }
-
-  function handleLogin() {
-    router.push('/dashboard')
   }
   
 

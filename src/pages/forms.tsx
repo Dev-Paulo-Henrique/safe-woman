@@ -4,7 +4,7 @@ import { Sidebar } from "./../components/Sidebar";
 import { Input } from "./../components/Form/Input";
 import { TextArea } from "./../components/Form/TextArea";
 import Link from 'next/link'
-import { database } from "../services/firebase";
+// import { database } from "../services/firebase";
 import { theme } from "../styles/theme";
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from "react";
@@ -28,7 +28,9 @@ export default function CreateUser(){
       email: email,
       description: description,
     }
-    database.ref('forms/').push(question);
+
+    toast(question)
+    // database.ref('forms/').push(question);
   }
 
   return(
