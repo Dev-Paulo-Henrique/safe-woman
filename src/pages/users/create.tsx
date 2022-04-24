@@ -12,7 +12,7 @@ import { queryClient } from "../../services/queryClient";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
-import { auth, createUserWithEmailAndPassword } from '../../services/firebase'
+// import { auth } from '../../services/firebase'
 import { theme } from "../../styles/theme";
 
 
@@ -39,18 +39,18 @@ export default function CreateUser(){
   
   
   const createUser = useMutation(async (user: CreateUserFormData) => {
-    // const response = await api.post('users', {
-    //   user: {
-    //     ...user,
-    //     created_at: new Date()
-    //   }
-    // })
-    // return response.data.user
+    const response = await api.post('users', {
+      user: {
+        ...user,
+        created_at: new Date()
+      }
+    })
+    return response.data.user
   }, {
     onSuccess: () => {
-      // queryClient.invalidateQueries('users')
+      queryClient.invalidateQueries('users')
 
-      // router.push('/users')
+      router.push('/users')
     }
   })
 
@@ -60,28 +60,32 @@ export default function CreateUser(){
 
   const handleCreateUser: SubmitHandler<CreateUserFormData> = async (values) => {
     await new Promise(resolve => setTimeout(resolve, 2000))
-
+    
     // await createUser.mutateAsync(values)
-    console.log(values.email, values.password)
-    createUserWithEmailAndPassword(auth, values.email, values.password).then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log(user)
-      // ...
-      toast.success('Enviado', {
-        duration: 4000,
-        position: 'bottom-center',
-      });
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-      toast.error('Erro', {
-        duration: 4000,
-        position: 'bottom-center',
-      });
+    toast.success(`Usuário ${values.name} foi criado`, {
+      duration: 4000,
+      position: 'bottom-center',
     });
+    // console.log(values.email, values.password)
+    // createUserWithEmailAndPassword(auth, values.email, values.password).then((userCredential) => {
+    //   // Signed in
+    //   const user = userCredential.user;
+    //   console.log(user)
+    //   // ...
+    //   toast.success('Enviado', {
+    //     duration: 4000,
+    //     position: 'bottom-center',
+    //   });
+    // })
+    // .catch((error) => {
+    //   const errorCode = error.code;
+    //   const errorMessage = error.message;
+    //   // ..
+    //   toast.error('Erro', {
+    //     duration: 4000,
+    //     position: 'bottom-center',
+    //   });
+    // });
   }
 
   return(
