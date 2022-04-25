@@ -16,7 +16,7 @@ export default function CreateUser(){
   const [ email, setEmail ] = useState('')
   const [ description, setDescription ] = useState('')
 
-  function handleSubmit(event){
+  async function handleSubmit(event){
     event.preventDefault
     
     const question = {
@@ -29,6 +29,7 @@ export default function CreateUser(){
       description: description,
     }
 
+    
     console.log(question)
     // database.ref('forms/').push(question);
   }
