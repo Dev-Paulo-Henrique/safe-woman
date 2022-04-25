@@ -60,7 +60,7 @@ export default function UserList({ users }){
         </Button>
         </NextLink>
       </Flex>
-      {/* { isLoading ? (
+      { isLoading ? (
         <Flex justify="center" >
           <Spinner/>
         </Flex>
@@ -115,9 +115,9 @@ export default function UserList({ users }){
       onPageChange={setPage}
       />
         </>
-      )} */}
+      )}
       {/* FAKE */}
-      <Table colorScheme="whiteAlpha">
+      {/* <Table colorScheme="whiteAlpha">
         <Thead>
           <Tr>
             <Th px={["4","4","6"]} color="gray.300" width="8">
@@ -154,19 +154,19 @@ export default function UserList({ users }){
       totalCountOfRegisters={20}
       currentPage={page}
       onPageChange={setPage}
-      />
+      /> */}
       </Box>
       </Flex>
     </Box>
   );
 }
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const { users, totalCount } = await getUsers(1)
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { users, totalCount } = await getUsers(1)
 
-//   return {
-//     props: {
-//       users,
-//     }
-//   }
-// }
+  return {
+    props: {
+      users,
+    }
+  }
+}
