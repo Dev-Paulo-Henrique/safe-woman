@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 // import { auth } from '../services/firebase'
 // import { database } from "../services/firebase";
 import { useState } from 'react'
+import { theme } from '../styles/theme'
 
 
 type SignInFormData = {
