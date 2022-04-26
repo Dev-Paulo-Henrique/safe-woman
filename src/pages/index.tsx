@@ -47,7 +47,7 @@ export default function SignIn() {
       count: 1
     });
     toast.success('Logado');
-    router.push('/dashboard')
+    router.push('/list')
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
