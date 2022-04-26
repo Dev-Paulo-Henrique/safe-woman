@@ -7,7 +7,7 @@ import { SidebarDrawerProvider } from '../contexts/SidebarDrawerContext'
 import { QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { queryClient } from '../services/queryClient'
-// import { AuthContextProvider } from "../contexts/AuthContext";
+import { AuthContextProvider } from "../contexts/AuthContext";
 
 
 // if(process.env.NODE_ENV === 'development'){
@@ -19,9 +19,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>
         <SidebarDrawerProvider>
-      {/* <AuthContextProvider> */}
+      <AuthContextProvider>
         <Component {...pageProps} />
-    {/* </AuthContextProvider> */}
+    </AuthContextProvider>
         <Toaster position="bottom-center" />
         </SidebarDrawerProvider>
         </ChakraProvider>

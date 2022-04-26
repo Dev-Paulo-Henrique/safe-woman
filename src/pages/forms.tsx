@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { theme } from "../styles/theme";
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from "react";
+import { auth } from "../services/firebase";
 
 export default function CreateUser(){
   const [ username, setUsername ] = useState('')
@@ -55,8 +56,8 @@ export default function CreateUser(){
       <Heading size="lg" fontWeight="normal">Depoimento</Heading>
       <Divider my="6" borderColor="gray.700"/>
       <VStack spacing="8">
-        <Input name="name" type="text" label="Nome" isRequired onChange={(event) => setUsername(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}}/>
-        <Input name="email" type="email" label="E-mail" isRequired onChange={(event) => setEmail(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}}/>
+        <Input name="name" type="text" label="Nome" isRequired onChange={(event) => setUsername(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}} value={auth.currentUser?.displayName} isDisabled={auth.currentUser.displayName ? true : false}/>
+        <Input name="email" type="email" label="E-mail" isRequired onChange={(event) => setEmail(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}} value={auth.currentUser.email} isDisabled/>
         <Input name="local" type="search" label="Local" isRequired onChange={(event) => setLocal(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}}/>
         <Input name="date" type="date" label="Data" isRequired cursor="pointer" onChange={(event) => setDate(event.target.value)}/>
         <TextArea name="description" label="Descrição" isRequired onChange={(event) => setDescription(event.target.value)} overflowY="auto"

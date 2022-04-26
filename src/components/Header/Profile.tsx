@@ -1,4 +1,5 @@
 import { Flex, Text, Box, Avatar } from '@chakra-ui/react'
+import { auth } from '../../services/firebase'
 
 interface ProfileProps{
   showProfileData?: boolean;
@@ -9,11 +10,11 @@ export function Profile({showProfileData = true}: ProfileProps) {
     <Flex align="center">
     { showProfileData && (
       <Box mr="4" textAlign="right">
-      <Text>Paulo Henrique</Text>
-      <Text color="gray.300" fontSize="small">gato@miau.com</Text>
+      <Text>{auth.currentUser.displayName}</Text>
+      <Text color="gray.300" fontSize="small">{auth.currentUser.email}</Text>
     </Box>
     )}
-    <Avatar size="md" name="Paulo Henrique" src="https://github.com/Dev-Paulo-Henrique.png"/> 
+    <Avatar size="md" name={auth.currentUser.displayName ? auth.currentUser.displayName : auth.currentUser.email}/> 
     </Flex>
   )
 }
