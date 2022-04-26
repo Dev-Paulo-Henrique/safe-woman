@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Button, Icon, Table, Thead, Tr, Th, Checkbox, Tbody, Td, Text, useBreakpointValue, Spinner, Link } from "@chakra-ui/react";
-import { RiAddLine, RiPencilLine } from "react-icons/ri";
+import { RiListCheck2, RiPencilLine } from "react-icons/ri";
 import { Header } from "../components/Header";
 import Pagination from "../components/Pagination";
 import { Sidebar } from "../components/Sidebar";
@@ -85,6 +85,9 @@ export default function UserList({ users }){
           Relatos
           { !isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4"/> }
           </Heading>
+          <Button size="sm" fontSize="sm" colorScheme="pink" isDisabled>
+          73 Relatos
+        </Button>
       </Flex>
       {/* { isLoading ? (
         <Flex justify="center" >
@@ -201,7 +204,7 @@ export default function UserList({ users }){
         >
           <Flex h="100%" w="100%" flexDirection="column" justifyContent="center" alignItems="center">
 
-            <Text fontWeight="bold" fontSize="25" mt="6rem"  textAlign="center">Relato de Paulo Santos</Text>
+            <Text fontWeight="bold" fontSize="25" mt="6rem"  textAlign="center">Paulo Santos</Text>
             <Text mb="2rem" overflowY="auto"
     css={{
       '&::-webkit-scrollbar': {

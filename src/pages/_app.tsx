@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <AuthContextProvider>
         <Component {...pageProps} />
     </AuthContextProvider>
-        <Toaster position="bottom-center" />
+        <Toaster position="top-center" />
         </SidebarDrawerProvider>
         </ChakraProvider>
         <ReactQueryDevtools/>

@@ -12,20 +12,21 @@ import { queryClient } from "../../services/queryClient";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
-// import { auth } from '../../services/firebase'
+import { auth } from '../../services/firebase'
 import { theme } from "../../styles/theme";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 
 
 type CreateUserFormData = {
-  name: string;
+  // name: string;
   email: string;
   password: string;
   password_confirmation: string;
 }
 
 const createUserFormSchema = yup.object().shape({
-  name: yup.string().required('Nome obrigatório'),
+  // name: yup.string().required('Nome obrigatório'),
   email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
   password: yup.string().required('Senha obrigatória').min(8, 'No mínimo 8 caracteres'),
   password_confirmation: yup.string().oneOf([null, yup.ref('password')], 'As senhas precisam ser iguais')
@@ -39,18 +40,36 @@ export default function CreateUser(){
   
   
   const createUser = useMutation(async (user: CreateUserFormData) => {
-    const response = await api.post('users', {
-      user: {
-        ...user,
-        created_at: new Date()
-      }
+    // const response = await api.post('users', {
+    //   user: {
+    //     ...user,
+    //     created_at: new Date()
+    //   }
+    // })
+    // return response.data.user
+
+    await createUserWithEmailAndPassword(auth, user.email, user.password).then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log(user)
+      // ...
+      toast.success('Enviado', {
+        duration: 4000,
+      });
+      router.push('/list')
     })
-    return response.data.user
+    .catch((error) => {
+      const errorMessage = error.message;
+      const errorCode = error.code;
+      // ..
+      toast.error(`${errorCode}`, {
+        duration: 4000,
+      });
+    });
+
   }, {
     onSuccess: () => {
       queryClient.invalidateQueries('users')
-
-      router.push('/users')
     }
   })
 
@@ -61,31 +80,13 @@ export default function CreateUser(){
   const handleCreateUser: SubmitHandler<CreateUserFormData> = async (values) => {
     await new Promise(resolve => setTimeout(resolve, 2000))
     
-    // await createUser.mutateAsync(values)
-    toast.success(`Usuário ${values.name} foi criado`, {
-      duration: 4000,
-      position: 'bottom-center',
-    });
-    // console.log(values.email, values.password)
-    // createUserWithEmailAndPassword(auth, values.email, values.password).then((userCredential) => {
-    //   // Signed in
-    //   const user = userCredential.user;
-    //   console.log(user)
-    //   // ...
-    //   toast.success('Enviado', {
-    //     duration: 4000,
-    //     position: 'bottom-center',
-    //   });
-    // })
-    // .catch((error) => {
-    //   const errorCode = error.code;
-    //   const errorMessage = error.message;
-    //   // ..
-    //   toast.error('Erro', {
-    //     duration: 4000,
-    //     position: 'bottom-center',
-    //   });
+    // toast.success(`Usuário ${values.name} foi criado`, {
+      //   duration: 4000,
+    //   position: 'bottom-center',
     // });
+    // console.log(values.email, values.password)
+    
+    await createUser.mutateAsync(values)
   }
 
   return(
@@ -110,7 +111,7 @@ export default function CreateUser(){
       <Divider my="6" borderColor="gray.700"/>
       <VStack spacing="8">
         <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
-          <Input name="name" label="Nome completo" {...register('name')} error={errors.name}/>
+          {/* <Input name="name" label="Nome completo" {...register('name')} error={errors.name}/> */}
           <Input name="email" type="email" label="E-mail" {...register('email')} error={errors.email} onChange={event => setEmail(event.target.value)}/>
         </SimpleGrid>
         <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
@@ -123,7 +124,7 @@ export default function CreateUser(){
         <Link href="/users" passHref>
           <Button as="a" colorScheme="whiteAlpha">Cancelar</Button>
           </Link>
-          <Button type="submit" colorScheme="pink" isLoading={formState.isSubmitting}>Salvar</Button>
+          <Button type="submit" colorScheme="pink"  isLoading={formState.isSubmitting}>Salvar</Button>
         </HStack>
       </Flex>
       </Box>

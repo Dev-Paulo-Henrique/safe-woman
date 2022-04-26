@@ -70,7 +70,7 @@ export default function CreateUser(){
       <Header/>
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
       <Sidebar/>
-      <Box as="form" flex="1"  borderRadius={8} bg="gray.800" p={["6", "8"]} onSubmit={()=>{}}>
+      {/* <Box as="form" flex="1"  borderRadius={8} bg="gray.800" p={["6", "8"]} onSubmit={()=>{}}>
       <Heading size="lg" fontWeight="normal">Wendy</Heading>
       <Divider my="6" borderColor="gray.700"/>
       <VStack spacing="8">
@@ -84,7 +84,7 @@ export default function CreateUser(){
           <Button type="submit" colorScheme="pink">Enviar</Button>
         </HStack>
       </Flex>
-      </Box>
+      </Box> */}
       </Flex>
     </Box>
   );

@@ -4,35 +4,34 @@ import { Sidebar } from "./../components/Sidebar";
 import { Input } from "./../components/Form/Input";
 import { TextArea } from "./../components/Form/TextArea";
 import Link from 'next/link'
-// import { database } from "../services/firebase";
+import { push, child, ref, set } from "firebase/database";
 import { theme } from "../styles/theme";
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from "react";
-import { auth } from "../services/firebase";
+import { auth, database } from "../services/firebase";
 
 export default function CreateUser(){
   const [ username, setUsername ] = useState('')
   const [ local, setLocal ] = useState('')
-  const [ date, setDate ] = useState('')
+  // const [ date, setDate ] = useState('')
   const [ email, setEmail ] = useState('')
   const [ description, setDescription ] = useState('')
 
   async function handleSubmit(event){
     event.preventDefault
     
-    const question = {
+    const newPostKey = push(child(ref(database), 'forms')).key;
+
+    await set(ref(database, `forms/${newPostKey}`), {
       username: username,
       local: local,
       date: new Intl.DateTimeFormat('pt-BR', {
-        year: 'numeric', month: 'long', day: 'numeric'
-      }).format(parseInt(date)),
+        year: '2-digit', month: '2-digit', day: '2-digit'
+      }).format(new Date()),
       email: email,
       description: description,
-    }
+    });
 
-    
-    console.log(question)
-    // database.ref('forms/').push(question);
   }
 
   return(
@@ -56,10 +55,9 @@ export default function CreateUser(){
       <Heading size="lg" fontWeight="normal">Depoimento</Heading>
       <Divider my="6" borderColor="gray.700"/>
       <VStack spacing="8">
-        <Input name="name" type="text" label="Nome" isRequired onChange={(event) => setUsername(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}} value={auth.currentUser?.displayName} isDisabled={auth.currentUser?.displayName ? true : false}/>
-        <Input name="email" type="email" label="E-mail" isRequired onChange={(event) => setEmail(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}} value={auth.currentUser?.email} isDisabled={auth.currentUser?.email ? true : false}/>
+        <Input name="name" type="text" label="Nome" isRequired onChange={(event) => setUsername(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}}/>
+        <Input name="email" type="email" label="E-mail" isRequired onChange={(event) => setEmail(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}}/>
         <Input name="local" type="search" label="Local" isRequired onChange={(event) => setLocal(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}}/>
-        <Input name="date" type="date" label="Data" isRequired cursor="pointer" onChange={(event) => setDate(event.target.value)}/>
         <TextArea name="description" label="Descrição" isRequired onChange={(event) => setDescription(event.target.value)} overflowY="auto"
     css={{
       '&::-webkit-scrollbar': {
