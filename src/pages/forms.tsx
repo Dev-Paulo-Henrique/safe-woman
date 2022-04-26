@@ -56,8 +56,8 @@ export default function CreateUser(){
       <Heading size="lg" fontWeight="normal">Depoimento</Heading>
       <Divider my="6" borderColor="gray.700"/>
       <VStack spacing="8">
-        <Input name="name" type="text" label="Nome" isRequired onChange={(event) => setUsername(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}} value={auth.currentUser?.displayName} isDisabled={auth.currentUser.displayName ? true : false}/>
-        <Input name="email" type="email" label="E-mail" isRequired onChange={(event) => setEmail(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}} value={auth.currentUser.email} isDisabled/>
+        <Input name="name" type="text" label="Nome" isRequired onChange={(event) => setUsername(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}} value={auth.currentUser?.displayName} isDisabled={auth.currentUser?.displayName ? true : false}/>
+        <Input name="email" type="email" label="E-mail" isRequired onChange={(event) => setEmail(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}} value={auth.currentUser?.email} isDisabled={auth.currentUser?.email ? true : false}/>
         <Input name="local" type="search" label="Local" isRequired onChange={(event) => setLocal(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}}/>
         <Input name="date" type="date" label="Data" isRequired cursor="pointer" onChange={(event) => setDate(event.target.value)}/>
         <TextArea name="description" label="Descrição" isRequired onChange={(event) => setDescription(event.target.value)} overflowY="auto"
@@ -79,9 +79,6 @@ export default function CreateUser(){
       </VStack>
       <Flex mt="8" justify="flex-end">
         <HStack spacing="4">
-        {/* <Link href="/automation" passHref>
-          <Button as="a" colorScheme="whiteAlpha">Cancelar</Button>
-          </Link> */}
           <Button type="submit" colorScheme="pink">Enviar</Button>
         </HStack>
       </Flex>

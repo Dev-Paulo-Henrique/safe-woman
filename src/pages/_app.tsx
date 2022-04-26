@@ -20,7 +20,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ChakraProvider theme={theme}>
         <SidebarDrawerProvider>
       <AuthContextProvider>
-      <title>Safe Woman</title>
         <Component {...pageProps} />
     </AuthContextProvider>
         <Toaster position="bottom-center" />

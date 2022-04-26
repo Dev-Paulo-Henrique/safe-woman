@@ -10,11 +10,11 @@ export function Profile({showProfileData = true}: ProfileProps) {
     <Flex align="center">
     { showProfileData && (
       <Box mr="4" textAlign="right">
-      <Text>{auth.currentUser.displayName}</Text>
-      <Text color="gray.300" fontSize="small">{auth.currentUser.email}</Text>
+      <Text>{auth.currentUser?.displayName ? auth.currentUser?.displayName : 'Desconhecido'}</Text>
+      <Text color="gray.300" fontSize="small">{auth.currentUser?.email ? auth.currentUser?.email : 'Desconhecido'}</Text>
     </Box>
     )}
-    <Avatar size="md" name={auth.currentUser.displayName ? auth.currentUser.displayName : auth.currentUser.email}/> 
+    <Avatar size="md" name={auth.currentUser?.displayName ? auth.currentUser?.displayName : auth.currentUser?.email}/> 
     </Flex>
   )
 }
