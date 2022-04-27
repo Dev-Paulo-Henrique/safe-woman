@@ -109,7 +109,7 @@ export default function SignIn() {
          <Button w={140} type="submit" mt="6" colorScheme="pink"  size="lg" isLoading={formState.isSubmitting}>Entrar</Button>
         </Flex>
          <Divider my="3" borderColor="gray.700"/>
-         <Button type="button" colorScheme="pink"  size="lg" isLoading={formState.isSubmitting} onClick={handleLoginWithGoogle}>Google</Button>
+         <Button type="button" colorScheme="pink"  size="lg" onClick={handleLoginWithGoogle}>Google</Button>
         </Flex>
     </Flex>
   )

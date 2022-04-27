@@ -10,7 +10,8 @@ import { queryClient } from "../services/queryClient";
 import { api } from "../services/api";
 import { GetServerSideProps } from "next";
 import { theme } from "../styles/theme";
-// import { database, onValue, ref, onChildAdded } from "../services/firebase";
+import { database } from "../services/firebase";
+import { onValue, ref, onChildAdded, get, child } from 'firebase/database'
 import Modal from "react-modal";
 // import useRoom from "../services/hooks/useRoom";
 // import { useRouter } from "next/router";
@@ -51,16 +52,28 @@ export default function UserList({ users }){
   }
 
 
-//   const roomRef = ref(database, 'forms/');
-// onChildAdded(roomRef, (snapshot) => {
-//   setUsername(snapshot.val().username)
-//   setLocal(snapshot.val().local)
-//   setDate(snapshot.val().date)
-//   setEmail(snapshot.val().email)
-//   setDescription(snapshot.val().description)
-//   }, {
-//     onlyOnce: true
-//   })
+  const roomRef = ref(database, 'forms/');
+  const roomRef2 = ref(database);
+  // const count = onValue(roomRef, (snapshot) => {
+  //   console.log(snapshot.val())
+  //   snapshot.forEach((childSnapshot) => {
+  //     const childKey = childSnapshot.key;
+  //     const childData = childSnapshot.val();
+  //     // ...
+  //     console.log(childKey.length, childData)
+  //   });
+  // }, {
+  //   onlyOnce: true
+  // });
+  // onChildAdded(roomRef, (snapshot) => {
+  // setUsername(snapshot.val().username)
+  // setLocal(snapshot.val().local)
+  // setDate(snapshot.val().date)
+  // setEmail(snapshot.val().email)
+  // setDescription(snapshot.val().description)
+  // }, {
+  //   onlyOnce: true
+  // })
 
   return(
     <Box direction="column" h="100vh" overflowY="auto"
@@ -161,11 +174,11 @@ export default function UserList({ users }){
           <Link color="pink.400" onClick={() => setIsModalOpen(true)}> {/*RELATO AO CLICAR NO LINK*/}
           <Text fontWeight="bold">Paulo Santos</Text>
           </Link>
-          <Text fontSize="sm" color="gray.300">gato@miau.com</Text>
+          <Text fontSize="sm" color="gray.300">safewoman22@gmail.com</Text>
         </Box>
       </Td>
-      { isWideVersion && <Td>18/03/2004</Td> }
-      <Td>Recife</Td>
+      { isWideVersion && <Td>04/04/22</Td> }
+      <Td>Jaboatão dos Guararapes</Td>
     </Tr> 
         </Tbody>
       </Table>
