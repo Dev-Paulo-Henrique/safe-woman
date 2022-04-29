@@ -13,7 +13,7 @@ import { theme } from "../styles/theme";
 import { database } from "../services/firebase";
 import { onValue, ref, onChildAdded, get, child } from 'firebase/database'
 import Modal from "react-modal";
-// import useRoom from "../services/hooks/useRoom";
+import useRoom from "../services/hooks/useRoom";
 // import { useRouter } from "next/router";
 
 type RoomQueryParams = {
@@ -24,7 +24,7 @@ type RoomQueryParams = {
 export default function UserList({ users }){
   // const router = useRouter();
   // const { id: roomId }: RoomQueryParams = router.query;
-  // const { questions } = useRoom(roomId);
+  const { questions } = useRoom();
   const [page, setPage] = useState(1)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [ username, setUsername ] = useState('')
@@ -50,6 +50,7 @@ export default function UserList({ users }){
       staleTime: 1000 * 60 * 10
     })
   }
+  console.log(questions.length)
 
 
   const roomRef = ref(database, 'forms/');

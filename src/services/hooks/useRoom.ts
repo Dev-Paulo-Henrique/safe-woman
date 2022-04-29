@@ -1,4 +1,5 @@
-// import { database, ref, set, onValue } from "../firebase";
+import { database } from "../firebase";
+import { ref, child, onValue } from "firebase/database";
 
 import Router from "next/router";
 import { useState, useEffect } from "react";
@@ -24,17 +25,17 @@ type FirebaseQuestions = Record<
   }
 >;
 
-export default function useRoom(roomId: string) {
+export default function useRoom() {
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [title, setTitle] = useState("");
 
   useEffect(() => {
-  // const roomRef = ref(database, `forms/${roomId}`);
-  // console.log('amore', roomRef)
+  const roomRef = ref(database, 'forms/')
+  console.log('amore', roomRef)
     
 
-    // onValue(roomRef, (room) => {
-      // const databaseRoom = room.val();
+    onValue(roomRef, (room) => {
+      const databaseRoom = room.val();
 
       // if(databaseRoom?.closedAt && (user?.id !== databaseRoom?.authorId)) {
       //   toast.error("Sala foi encerrada pelo admin", {
@@ -48,31 +49,31 @@ export default function useRoom(roomId: string) {
       //     },
       //   });
 
-      //   Router.push("/");
+        // Router.push("/");
 
-      //   // return () => {
-      //   //   roomRef.off("value");
-      //   // };
+        // return () => {
+        //   roomRef.off("value");
+        // };
       // }
 
-      // const firebaseQuestions: FirebaseQuestions =
-        // databaseRoom?.questions ?? {};
+      const firebaseQuestions: FirebaseQuestions =
+        databaseRoom?.questions ?? {};
 
-      // console.log('oi',databaseRoom);
+      console.log('oi',databaseRoom);
 
-      // const parsedQuestions = Object.entries(firebaseQuestions).map(
-      //   ([key, value]) => {
-      //     return {
-      //       id: key,
-      //       description: value.description,
-      //       username: value.username,
-      //       email: value.email,
-      //       date: value.date,
-      //       local: value.local,
-      //     };
-      //   }
-      // );
-      // console.log(parsedQuestions)
+      const parsedQuestions = Object.entries(firebaseQuestions).map(
+        ([key, value]) => {
+          return {
+            id: key,
+            description: value.description,
+            username: value.username,
+            email: value.email,
+            date: value.date,
+            local: value.local,
+          };
+        }
+      );
+      console.log(parsedQuestions)
 
       // const orderQuestionsByLikeCount = parsedQuestions.sort((roomA, roomB) =>
       //   roomA.type < roomB.type ? -1 : roomA.type > roomB.type ? 1 : 0
@@ -82,9 +83,9 @@ export default function useRoom(roomId: string) {
       //   roomA.isAnswered > roomB.isAnswered ? 1 : roomA.isAnswered < roomB.isAnswered ? -1 : 0
       // );
 
-      // setTitle(databaseRoom?.title);
+      setTitle(databaseRoom?.title);
       // setQuestions(orderQuestionByNotAnswer);
-    // });
+    });
 
     // return () => {
     //   roomRef.off("value");

@@ -23,7 +23,8 @@ const options = {
     enabled: false,
   },
   tooltip: {
-    enabled: false,
+    enabled: true,
+      theme: 'dark',
   },
   xaxis: {
     // type: "category",
@@ -39,7 +40,18 @@ const options = {
       // "2018-09-19T03:30:00.000Z", 
       // "2018-09-19T04:30:00.000Z", 
       // "2018-09-19T05:30:00.000Z", 
-      "Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sept", "Oct", "Nov" , "Dec"
+      "Janeiro",
+      "Fevereiro",
+      "Março",
+      "Abril",
+      "Maio",
+      "Junho",
+      "Julho",
+      "Agosto",
+      "Setembro",
+      "Outubro",
+      "Novembro",
+      "Dezembro"
       
       // '2021-03-18T00:00:00.000Z', dia
       // '2021-03-19T00:00:00.000Z',
@@ -65,6 +77,14 @@ const series = [
   { name: 'Pagamentos', data: [41, 76, 24, 34, 12, 0, 0, 12, 0, 0, 0, 12] },
   { name: 'Clientes', data: [61, 43, 63, 24, 80, 0, 78, 0, 0, 24, 32, 0] },
 ]
+
+//Função para colocar os meses
+
+const date = new Intl.DateTimeFormat('pt-BR', {
+  month: 'long'
+}).format(new Date())
+
+console.log(date.charAt(0).toUpperCase() + date.slice(1))
 
 export default function Dashboard() {
   return (
