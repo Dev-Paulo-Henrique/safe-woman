@@ -30,7 +30,7 @@ export default function useRoom() {
   const [title, setTitle] = useState("");
 
   useEffect(() => {
-  const roomRef = ref(database, 'forms/')
+  const roomRef = ref(database, 'forms')
   console.log('amore', roomRef)
     
 
@@ -59,7 +59,7 @@ export default function useRoom() {
       const firebaseQuestions: FirebaseQuestions =
         databaseRoom?.questions ?? {};
 
-      console.log('oi',databaseRoom);
+      console.log('Form',databaseRoom?.form);
 
       const parsedQuestions = Object.entries(firebaseQuestions).map(
         ([key, value]) => {
@@ -73,7 +73,7 @@ export default function useRoom() {
           };
         }
       );
-      console.log(parsedQuestions)
+      console.log('Tamanho', parsedQuestions)
 
       // const orderQuestionsByLikeCount = parsedQuestions.sort((roomA, roomB) =>
       //   roomA.type < roomB.type ? -1 : roomA.type > roomB.type ? 1 : 0
@@ -83,14 +83,15 @@ export default function useRoom() {
       //   roomA.isAnswered > roomB.isAnswered ? 1 : roomA.isAnswered < roomB.isAnswered ? -1 : 0
       // );
 
-      setTitle(databaseRoom?.title);
-      // setQuestions(orderQuestionByNotAnswer);
+      // setTitle(databaseRoom?.title);
+      setQuestions(databaseRoom?.form);
     });
 
     // return () => {
     //   roomRef.off("value");
     // };
   }, []);
+  console.log('q', questions)
 
   return { questions, title };
 }

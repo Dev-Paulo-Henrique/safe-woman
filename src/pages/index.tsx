@@ -1,4 +1,4 @@
-import { Flex,  Button, Stack, Divider, HStack } from '@chakra-ui/react'
+import { Flex,  Button, Stack, Divider, HStack, Icon } from '@chakra-ui/react'
 import { Input } from '../components/Form/Input'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -13,6 +13,7 @@ import { useState } from 'react'
 import { theme } from '../styles/theme'
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import Link from 'next/link'
+import { RiGoogleFill } from 'react-icons/ri'
 
 
 type SignInFormData = {
@@ -79,7 +80,6 @@ export default function SignIn() {
       // ...
       toast.success('Sucesso', {
         duration: 4000,
-        position: 'bottom-center',
       });
       router.push('/dashboard')
   })
@@ -89,7 +89,6 @@ export default function SignIn() {
     // ..
     toast.error('Senha incorreta', {
       duration: 4000,
-      position: 'bottom-center',
     });
   });
   }
@@ -109,7 +108,7 @@ export default function SignIn() {
          <Button w={140} type="submit" mt="6" colorScheme="pink"  size="lg" isLoading={formState.isSubmitting}>Entrar</Button>
         </Flex>
          <Divider my="3" borderColor="gray.700"/>
-         <Button type="button" colorScheme="pink"  size="lg" onClick={handleLoginWithGoogle}>Google</Button>
+         <Button type="button" colorScheme="red"  size="lg" onClick={handleLoginWithGoogle}><Icon as={RiGoogleFill} fontSize="30"/></Button>
         </Flex>
     </Flex>
   )

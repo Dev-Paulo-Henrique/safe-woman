@@ -2,6 +2,7 @@ import { Flex, SimpleGrid, Box, Text, theme } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
 import { Header } from "../components/Header";
 import { Sidebar } from '../components/Sidebar';
+import { auth } from '../services/firebase';
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
@@ -71,14 +72,20 @@ const options = {
   }
 }
 
+const adminSeries = [
+  { name: 'Clientes', data: [61, 43, 63, 24, 80, 0, 78, 0, 0, 24, 32, 0] },
+  { name: 'Pagamentos', data: [41, 76, 24, 34, 12, 0, 0, 12, 0, 0, 0, 12] },
+  { name: 'Registros', data: [31, 120, 10, 28, 109, 0, 0, 34, 0, 0, 45, 0] },
+  { name: 'Wendy', data: [11, 32, 45, 32, 34, 0, 0, 0, 0, 0, 67, 0] },
+]
 const series = [
   { name: 'Registros', data: [31, 120, 10, 28, 109, 0, 0, 34, 0, 0, 45, 0] },
   { name: 'Wendy', data: [11, 32, 45, 32, 34, 0, 0, 0, 0, 0, 67, 0] },
-  { name: 'Pagamentos', data: [41, 76, 24, 34, 12, 0, 0, 12, 0, 0, 0, 12] },
-  { name: 'Clientes', data: [61, 43, 63, 24, 80, 0, 78, 0, 0, 24, 32, 0] },
 ]
 
-//Função para colocar os meses
+console.log(auth.currentUser?.uid)
+
+//Função para colocar os meses ONhO5k9W2tcymSb39KTTBKkWZi32
 
 const date = new Intl.DateTimeFormat('pt-BR', {
   month: 'long'
@@ -107,7 +114,7 @@ export default function Dashboard() {
       <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
         <Box p={["6", "8"]} bg="gray.800" borderRadius={8} pb="4">
         <Text fontSize="lg" mb="4">Painel de controle</Text>
-        <Chart options={options} series={series} type="area" height={350}/>
+        { auth.currentUser?.uid === 'ONhO5k9W2tcymSb39KTTBKkWZi32' ? <Chart options={options} series={adminSeries} type="area" height={350}/> : <Chart options={options} series={series} type="area" height={350}/> }
         </Box>
       </SimpleGrid>
       </Flex>

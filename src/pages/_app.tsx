@@ -16,17 +16,17 @@ import { AuthContextProvider } from "../contexts/AuthContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
+      <AuthContextProvider>
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>
         <SidebarDrawerProvider>
-      <AuthContextProvider>
         <Component {...pageProps} />
-    </AuthContextProvider>
         <Toaster position="top-center" />
         </SidebarDrawerProvider>
         </ChakraProvider>
         <ReactQueryDevtools/>
     </QueryClientProvider>
+    </AuthContextProvider>
     )
 }
 
