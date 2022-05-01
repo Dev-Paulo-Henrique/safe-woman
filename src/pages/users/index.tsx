@@ -10,6 +10,7 @@ import { queryClient } from "../../services/queryClient";
 import { api } from "../../services/api";
 import { GetServerSideProps } from "next";
 import { theme } from "../../styles/theme";
+import { auth } from "../../services/firebase";
 
 export default function UserList({ users }){
   const [page, setPage] = useState(1)
@@ -120,9 +121,9 @@ export default function UserList({ users }){
       <Table colorScheme="whiteAlpha">
         <Thead>
           <Tr>
-            <Th px={["4","4","6"]} color="gray.300" width="8">
+            {/* <Th px={["4","4","6"]} color="gray.300" width="8">
               <Checkbox colorScheme="pink"/>
-            </Th>
+            </Th> */}
             <Th>Usuário</Th>
             { isWideVersion && <Th>Data de cadastro</Th> }
             <Th width="8"></Th>
@@ -130,22 +131,24 @@ export default function UserList({ users }){
         </Thead>
         <Tbody>
               <Tr>
-            <Td  px={["4","4","6"]}>
+            {/* <Td  px={["4","4","6"]}>
             <Checkbox colorScheme="pink"/>
-            </Td>
+            </Td> */}
             <Td>
               <Box>
-                <Link color="pink.400" onMouseEnter={() => {}}>
-                <Text fontWeight="bold">Paulo Henrique</Text>
-                </Link>
-                <Text fontSize="sm" color="gray.300">Gato@miau.com</Text>
+                {/* <Link color="pink.400" onMouseEnter={() => {}}> */}
+                <Text color="pink.400" fontWeight="bold">{auth.currentUser?.displayName ? auth.currentUser?.displayName : 'Desconhecido'}</Text>
+                {/* </Link> */}
+                <Text fontSize="sm" color="gray.300">{auth.currentUser?.email ? auth.currentUser?.email : 'Desconhecido'}</Text>
               </Box>
             </Td>
-            { isWideVersion && <Td>22 de Abril de 2021</Td> }
+            { isWideVersion && <Td>{new Intl.DateTimeFormat('pt-BR', {
+              day: "2-digit", month: "long", year: "numeric"
+            }).format(new Date())}</Td> }
             { isWideVersion && <Td>
-            <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiPencilLine} fontSize="16"/>}>
+            {/* <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiPencilLine} fontSize="16"/>}>
           { isWideVersion ? 'Editar' : '' }
-        </Button>
+        </Button> */}
             </Td> }
           </Tr>            
         </Tbody>
