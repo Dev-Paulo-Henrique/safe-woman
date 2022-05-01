@@ -137,7 +137,7 @@ export default function UserList({ users }){
             <Td>
               <Box>
                 {/* <Link color="pink.400" onMouseEnter={() => {}}> */}
-                <Text color="pink.400" fontWeight="bold">{auth.currentUser?.displayName ? auth.currentUser?.displayName : 'Desconhecido'}</Text>
+                <Text color="pink.400" fontWeight="bold">{auth.currentUser?.displayName ? auth.currentUser?.displayName : auth.currentUser?.email.split('@')[0]}</Text>
                 {/* </Link> */}
                 <Text fontSize="sm" color="gray.300">{auth.currentUser?.email ? auth.currentUser?.email : 'Desconhecido'}</Text>
               </Box>
