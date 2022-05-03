@@ -15,7 +15,6 @@ export default class MyDocument extends Document {
         <body>
           <Main/>
             <NextScript/>
-          <script src="https://www.gstatic.com/assistant/interactivecanvas/api/interactive_canvas.min.js"></script>
         </body>
       </Html>
     );
