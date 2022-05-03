@@ -49,7 +49,7 @@ export default function SignIn() {
       count: 1
     });
     toast.success('Logado');
-    router.push('/list')
+    router.push('/dashboard')
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
@@ -64,7 +64,7 @@ export default function SignIn() {
 
   
   const handleSignIn: SubmitHandler<SignInFormData> = async (values)=>{
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    new Promise(resolve => setTimeout(resolve, 2000))
     // set(ref(database, 'users/' + new Date().getUTCMonth() + '/'), {
     //   email: email,
     //   password: password,
@@ -72,7 +72,7 @@ export default function SignIn() {
     // toast.success('Logado');
     // router.push('/dashboard')
     // console.log(values)
-    signInWithEmailAndPassword(auth, values.email, values.password)
+    await signInWithEmailAndPassword(auth, values.email, values.password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
