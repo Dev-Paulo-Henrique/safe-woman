@@ -152,12 +152,14 @@ export default function SignIn() {
          <Button type="button" colorScheme="red"  size="lg" onClick={handleLoginWithGoogle}><Icon as={RiGoogleFill} fontSize="30"/></Button>
         </Flex>
         <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-<df-messenger
-  intent="WELCOME"
-  chat-title="Wendy"
-  agent-id="c7cac5db-4174-48bd-b54e-2066d0f03b2c"
-  language-code="pt-br"
-></df-messenger>
+        <div dangerouslySetInnerHTML={{ __html: `
+   <df-messenger
+   intent="WELCOME"
+   chat-title="Wendy"
+   agent-id="c7cac5db-4174-48bd-b54e-2066d0f03b2c"
+   language-code="pt-br"
+ ></df-messenger>
+` }} />
     </Flex>
   )
 }
