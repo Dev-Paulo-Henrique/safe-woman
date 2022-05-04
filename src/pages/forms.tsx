@@ -22,7 +22,7 @@ export default function CreateUser(){
     
     const newPostKey = push(child(ref(database), 'forms')).key;
 
-    await set(ref(database, `forms/form/${newPostKey}`), {
+    await set(ref(database, `forms/${newPostKey}`), {
       username: username,
       local: local,
       date: new Intl.DateTimeFormat('pt-BR', {

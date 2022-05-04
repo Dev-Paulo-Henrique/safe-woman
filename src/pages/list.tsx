@@ -32,6 +32,7 @@ export default function UserList({ users }){
   const [ date, setDate ] = useState('')
   const [ email, setEmail ] = useState('')
   const [ description, setDescription ] = useState('')
+  const [ size, setSize ] = useState(0)
 
   const { data, isLoading, isFetching, error } = useUsers(page, {
     initialData: users,
@@ -50,31 +51,11 @@ export default function UserList({ users }){
       staleTime: 1000 * 60 * 10
     })
   }
-  console.log(questions.length)
 
-
-  const roomRef = ref(database, 'forms/');
-  const roomRef2 = ref(database);
-  // const count = onValue(roomRef, (snapshot) => {
-  //   console.log(snapshot.val())
-  //   snapshot.forEach((childSnapshot) => {
-  //     const childKey = childSnapshot.key;
-  //     const childData = childSnapshot.val();
-  //     // ...
-  //     console.log(childKey.length, childData)
-  //   });
-  // }, {
-  //   onlyOnce: true
-  // });
-  // onChildAdded(roomRef, (snapshot) => {
-  // setUsername(snapshot.val().username)
-  // setLocal(snapshot.val().local)
-  // setDate(snapshot.val().date)
-  // setEmail(snapshot.val().email)
-  // setDescription(snapshot.val().description)
-  // }, {
-  //   onlyOnce: true
-  // })
+  const roomRef = ref(database);
+  const map = get(child(roomRef, `forms/`)).then((snapshot) => {
+    setSize(snapshot.size)
+  })
 
   return(
     <Box direction="column" h="100vh" overflowY="auto"
@@ -100,7 +81,7 @@ export default function UserList({ users }){
           { !isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4"/> }
           </Heading>
           <Button size="sm" fontSize="sm" colorScheme="pink" isDisabled>
-          73 Relatos
+          {size} Relatos
         </Button>
       </Flex>
       {/* { isLoading ? (

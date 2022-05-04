@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 // import { useAuth } from '../services/hooks/useAuth'
 import { useRouter } from "next/router";
 import { auth, database } from "../services/firebase";
-import { push, ref, set } from "firebase/database";
+import { push, ref, set, get, child } from "firebase/database";
 import { useState } from 'react'
 import { theme } from '../styles/theme'
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
@@ -35,6 +35,14 @@ export default function SignIn() {
     resolver: yupResolver(signInFormSchema)
   })
   const provider = new GoogleAuthProvider();
+
+  const dbRef = ref(database);
+
+  const date = new Intl.DateTimeFormat('pt-BR', {
+    month: 'long'
+  }).format(new Date())
+
+  const month = date.charAt(0).toUpperCase() + date.slice(1)
   
   const { errors } = formState
 
@@ -44,10 +52,28 @@ export default function SignIn() {
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const user = result.user;
-    // ...
-    set(ref(database, 'users/'), {
-      count: 1
+    const newPostKey = push(child(ref(database), 'users')).key;
+
+    set(ref(database, `users/${newPostKey}`), {
+      email: user.email
     });
+
+    get(child(dbRef, `count/${month}/`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        let count = snapshot.val().count + 1
+        set(ref(database, `count/${month}/`), {
+          count: count
+        });
+      } else {
+        set(ref(database, `count/${month}/`), {
+          count: 1
+        });
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    // ...
     toast.success('Logado');
     router.push('/dashboard')
   }).catch((error) => {
@@ -76,6 +102,21 @@ export default function SignIn() {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      get(child(dbRef, `count/${month}/`)).then((snapshot) => {
+        if (snapshot.exists()) {
+          let count = snapshot.val().count + 1
+          set(ref(database, `count/${month}/`), {
+            count: count
+          });
+        } else {
+          set(ref(database, `count/${month}/`), {
+            count: 1
+          });
+          console.log("No data available");
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
       console.log('usuário', user)
       // ...
       toast.success('Sucesso', {

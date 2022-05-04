@@ -2,7 +2,26 @@ import { Flex, SimpleGrid, Box, Text, theme } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
 import { Header } from "../components/Header";
 import { Sidebar } from '../components/Sidebar';
-import { auth } from '../services/firebase';
+import { push, ref, set, get, child } from "firebase/database";
+import { auth, database } from "../services/firebase";
+
+const dbRef = ref(database);
+
+const date = new Intl.DateTimeFormat('pt-BR', {
+  month: 'long'
+}).format(new Date())
+
+const month = date.charAt(0).toUpperCase() + date.slice(1)
+
+const getCount = get(child(dbRef, `count/`)).then((snapshot) => {
+  if (snapshot.exists()) {
+    alert(snapshot.ref)
+  } else {
+    alert("No data available");
+  }
+}).catch((error) => {
+  console.error(error);
+});
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
@@ -41,6 +60,7 @@ const options = {
       // "2018-09-19T03:30:00.000Z", 
       // "2018-09-19T04:30:00.000Z", 
       // "2018-09-19T05:30:00.000Z", 
+      
       "Janeiro",
       "Fevereiro",
       "Março",
@@ -86,12 +106,6 @@ const series = [
 console.log(auth.currentUser?.uid)
 
 //Função para colocar os meses ONhO5k9W2tcymSb39KTTBKkWZi32
-
-const date = new Intl.DateTimeFormat('pt-BR', {
-  month: 'long'
-}).format(new Date())
-
-console.log(date.charAt(0).toUpperCase() + date.slice(1))
 
 export default function Dashboard() {
   return (
