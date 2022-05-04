@@ -8,6 +8,8 @@ import { QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { queryClient } from '../services/queryClient'
 import { AuthContextProvider } from "../contexts/AuthContext";
+import Script from 'next/script'
+
 
 
 // if(process.env.NODE_ENV === 'development'){
@@ -20,6 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>
         <SidebarDrawerProvider>
+        <Script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></Script>
         <Component {...pageProps} />
         <Toaster position="top-center" />
         </SidebarDrawerProvider>
