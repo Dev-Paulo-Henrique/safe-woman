@@ -151,7 +151,6 @@ export default function SignIn() {
          <Divider my="3" borderColor="gray.700"/>
          <Button type="button" colorScheme="red"  size="lg" onClick={handleLoginWithGoogle}><Icon as={RiGoogleFill} fontSize="30"/></Button>
         </Flex>
-        <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
         <div dangerouslySetInnerHTML={{ __html: `
    <df-messenger
    intent="WELCOME"
