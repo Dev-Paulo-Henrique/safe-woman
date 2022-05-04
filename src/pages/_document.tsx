@@ -16,6 +16,8 @@ export default class MyDocument extends Document {
    chat-title="Wendy"
    agent-id="c7cac5db-4174-48bd-b54e-2066d0f03b2c"
    language-code="pt-br"
+   wait-open="true"
+   chat-icon="https://media4.giphy.com/media/h8OBdWZzRyY5p8VWvH/100w.gif?cid=ad960664k8dtlfi1vft8258vtm3p3ycl296dlqhejmid8pmi&rid=100w.gif&ct=s"
  ></df-messenger>
 ` }} />
         <title>Safe Woman</title>
