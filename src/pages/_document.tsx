@@ -11,12 +11,14 @@ export default class MyDocument extends Document {
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
         <meta name="google-site-verification" content="-j0SimXvp1t5MdqjZIy-zXv4IZmedaAhZeJCtFkTVJE" />
         <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-        <df-messenger
+        <div dangerouslySetInnerHTML={{ __html: `
+   <df-messenger
    intent="WELCOME"
    chat-title="Wendy"
    agent-id="c7cac5db-4174-48bd-b54e-2066d0f03b2c"
    language-code="pt-br"
  ></df-messenger>
+` }} />
         <title>Safe Woman</title>
         </Head>
         <body>
