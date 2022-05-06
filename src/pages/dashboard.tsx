@@ -5,23 +5,23 @@ import { Sidebar } from '../components/Sidebar';
 import { push, ref, set, get, child } from "firebase/database";
 import { auth, database } from "../services/firebase";
 
-const dbRef = ref(database);
+// const dbRef = ref(database);
 
-const date = new Intl.DateTimeFormat('pt-BR', {
-  month: 'long'
-}).format(new Date())
+// const date = new Intl.DateTimeFormat('pt-BR', {
+//   month: 'long'
+// }).format(new Date())
 
-const month = date.charAt(0).toUpperCase() + date.slice(1)
+// const month = date.charAt(0).toUpperCase() + date.slice(1)
 
-const getCount = get(child(dbRef, `count/`)).then((snapshot) => {
-  if (snapshot.exists()) {
-    alert(snapshot.ref)
-  } else {
-    alert("No data available");
-  }
-}).catch((error) => {
-  console.error(error);
-});
+// const getCount = get(child(dbRef, `count/`)).then((snapshot) => {
+//   if (snapshot.exists()) {
+//     alert(snapshot.ref)
+//   } else {
+//     alert("No data available");
+//   }
+// }).catch((error) => {
+//   console.error(error);
+// });
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false,

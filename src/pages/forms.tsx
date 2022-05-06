@@ -77,7 +77,7 @@ export default function CreateUser(){
       </VStack>
       <Flex mt="8" justify="flex-end">
         <HStack spacing="4">
-          <Button type="submit" colorScheme="pink">Enviar</Button>
+          <Button type="submit" colorScheme="pink" isDisabled={auth.currentUser?.email ? false : true}>Enviar</Button>
         </HStack>
       </Flex>
       </Box>
