@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import { queryClient } from '../services/queryClient'
 import { AuthContextProvider } from "../contexts/AuthContext";
 import Script from 'next/script'
+import '../styles/chatButton.css'
 
 
 
