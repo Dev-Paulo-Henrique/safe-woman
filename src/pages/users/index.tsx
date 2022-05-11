@@ -2,6 +2,7 @@ import { Box, Flex, Heading, Button, Icon, Table, Thead, Tr, Th, Checkbox, Tbody
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { Header } from "../../components/Header";
 import Pagination from "../../components/Pagination";
+import Head from 'next/head'
 import { Sidebar } from "../../components/Sidebar";
 import NextLink from 'next/link'
 import { getUsers, useUsers } from "../../services/hooks/useUsers";
@@ -46,6 +47,9 @@ export default function UserList({ users }){
         borderRadius: '24px',
       },
     }}>
+      <Head>
+    <title>Usuários | SW</title>
+    </Head>
       <Header/>
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
       <Sidebar/>

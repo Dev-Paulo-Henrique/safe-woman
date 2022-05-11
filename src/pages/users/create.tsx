@@ -3,6 +3,7 @@ import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
+import Head from 'next/head'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Input } from "../../components/Form/Input";
 import Link from 'next/link'
@@ -103,6 +104,9 @@ export default function CreateUser(){
         borderRadius: '24px',
       },
     }}>
+      <Head>
+    <title>Criar usuário | SW</title>
+    </Head>
       <Header/>
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
       <Sidebar/>

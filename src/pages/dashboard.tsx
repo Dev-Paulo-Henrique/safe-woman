@@ -1,6 +1,7 @@
 import { Flex, SimpleGrid, Box, Text, theme } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
 import { Header } from "../components/Header";
+import Head from 'next/head'
 import { Sidebar } from '../components/Sidebar';
 import { push, ref, set, get, child } from "firebase/database";
 import { auth, database } from "../services/firebase";
@@ -100,7 +101,7 @@ const adminSeries = [
 ]
 const series = [
   { name: 'Registros', data: [31, 120, 10, 28, 109, 0, 0, 34, 0, 0, 45, 0] },
-  { name: 'Wendy', data: [11, 32, 45, 32, 34, 0, 0, 0, 0, 0, 67, 0] },
+  { name: 'Relatos', data: [11, 32, 45, 32, 34, 0, 0, 0, 0, 0, 67, 0] },
 ]
 
 console.log(auth.currentUser?.uid)
@@ -122,6 +123,9 @@ export default function Dashboard() {
         borderRadius: '24px',
       },
     }}>
+      <Head>
+    <title>Painel de controle | SW</title>
+    </Head>
       <Header/>
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
       <Sidebar/>

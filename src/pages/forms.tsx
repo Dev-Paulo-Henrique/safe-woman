@@ -4,6 +4,7 @@ import { Sidebar } from "./../components/Sidebar";
 import { Input } from "./../components/Form/Input";
 import { TextArea } from "./../components/Form/TextArea";
 import Link from 'next/link'
+import Head from 'next/head'
 import { push, child, ref, set } from "firebase/database";
 import { theme } from "../styles/theme";
 import toast, { Toaster } from 'react-hot-toast';
@@ -48,6 +49,9 @@ export default function CreateUser(){
         borderRadius: '24px',
       },
     }}>
+      <Head>
+    <title>Formulário | SW</title>
+    </Head>
       <Header/>
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
       <Sidebar/>

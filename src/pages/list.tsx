@@ -9,6 +9,7 @@ import { useState,  } from "react";
 import { queryClient } from "../services/queryClient";
 import { api } from "../services/api";
 import { GetServerSideProps } from "next";
+import Head from 'next/head'
 import { theme } from "../styles/theme";
 import { database } from "../services/firebase";
 import { onValue, ref, onChildAdded, get, child } from 'firebase/database'
@@ -20,8 +21,20 @@ type RoomQueryParams = {
   id?: string;
 };
 
+type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  updatedAt: string;
+}
 
-export default function UserList({ users }){
+interface PostsProps{
+  posts: Post[]
+}
+
+
+
+export default function UserList({ users }, { posts }: PostsProps){
   // const router = useRouter();
   // const { id: roomId }: RoomQueryParams = router.query;
   const { questions } = useRoom();
@@ -71,6 +84,10 @@ export default function UserList({ users }){
         borderRadius: '24px',
       },
     }}>
+      
+    <Head>
+    <title>Relatos | SW</title>
+    </Head>
       <Header/>
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
       <Sidebar/>
@@ -84,6 +101,15 @@ export default function UserList({ users }){
           {size} Relatos
         </Button>
       </Flex>
+      {/* {posts.map(post => (
+          <Link key={post.slug} href={`/posts/${post.slug}`}>
+          <a>
+            <time>{post.updatedAt}</time>
+            <strong>{post.title}</strong>
+            <p>{post.excerpt}</p>
+        </a>
+        </Link>
+        ))} */}
       {/* { isLoading ? (
         <Flex justify="center" >
           <Spinner/>
