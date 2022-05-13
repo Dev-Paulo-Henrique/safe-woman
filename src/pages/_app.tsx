@@ -13,9 +13,9 @@ import '../styles/chatButton.css'
 
 
 
-if(process.env.NODE_ENV === 'production'){
+// if(process.env.NODE_ENV === 'production'){
   makeServer()
-}
+// }
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
