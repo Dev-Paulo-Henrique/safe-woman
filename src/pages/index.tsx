@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { GetStaticProps } from 'next'
 import toast, { Toaster } from 'react-hot-toast';
 // import { useAuth } from '../services/hooks/useAuth'
+import Head from 'next/head'
 import { useRouter } from "next/router";
 import { auth, database } from "../services/firebase";
 import { push, ref, set, get, child } from "firebase/database";
@@ -53,8 +54,9 @@ export default function SignIn() {
     const token = credential.accessToken;
     const user = result.user;
     const newPostKey = push(child(ref(database), 'users')).key;
+    console.log(token)
 
-    set(ref(database, `users/${newPostKey}`), {
+    set(ref(database, `users/`), {
       email: user.email
     });
 
@@ -137,6 +139,9 @@ export default function SignIn() {
 
   return (
 <Flex w="100vw" h="100vh" align="center" justify="center">
+<Head>
+    <title>Safe Woman</title>
+    </Head>
 <Flex as="form" w="100%" maxWidth={360} bg="gray.800" p="8" borderRadius={8} flexDir="column" onSubmit={handleSubmit(handleSignIn)}>
          <Stack spacing="4">
          <Input name="email" type="email" label="E-mail" {...register('email')} error={errors.email} onChange={event => setEmail(event.target.value)}/>

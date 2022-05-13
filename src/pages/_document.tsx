@@ -13,14 +13,13 @@ export default class MyDocument extends Document {
         <div dangerouslySetInnerHTML={{ __html: `
    <df-messenger
    intent="WELCOME"
-   chat-title="Wendy"
+   chat-title="Assistente Wendy"
    agent-id="c7cac5db-4174-48bd-b54e-2066d0f03b2c"
    language-code="pt-br"
    wait-open="true"
    chat-icon="https://media3.giphy.com/media/3o7bufqaqoHMTlvM9q/100w.gif?cid=ad960664ijl6r757bdt0ghmk9zs1oj0p8qpayown0p3sqmqh&rid=100w.gif&ct=s"
  ></df-messenger>
 ` }} />
-        <title>Safe Woman</title>
         </Head>
         <body>
           <Main/>

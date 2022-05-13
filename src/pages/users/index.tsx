@@ -65,7 +65,7 @@ export default function UserList({ users }){
         </Button>
         </NextLink>
       </Flex>
-      {/* { isLoading ? (
+      { isLoading ? (
         <Flex justify="center" >
           <Spinner/>
         </Flex>
@@ -78,6 +78,39 @@ export default function UserList({ users }){
         <Table colorScheme="whiteAlpha">
         <Thead>
           <Tr>
+            <Th>Usuário</Th>
+            { isWideVersion && <Th>Data de cadastro</Th> }
+          </Tr>
+        </Thead>
+        <Tbody>
+          {data.users.map(user => {
+            return (
+              <>
+              <Tr key={user.id}>
+            <Td>
+              <Box>
+                <Text color="pink.400" fontWeight="bold">{user.name}</Text>
+                <Text fontSize="sm" color="gray.300">{user.email}</Text>
+              </Box>
+            </Td>
+            { isWideVersion && <Td>{user.createdAt}</Td> }
+          </Tr>
+          </>
+            )
+          })}
+        </Tbody>
+      </Table>
+      <Pagination
+      totalCountOfRegisters={200}
+      currentPage={page}
+      onPageChange={setPage}
+      />
+        </>
+      )}
+      {/* FAKE */}
+      {/* <Table colorScheme="whiteAlpha">
+        <Thead>
+          <Tr>
             <Th px={["4","4","6"]} color="gray.300" width="8">
               <Checkbox colorScheme="pink"/>
             </Th>
@@ -87,62 +120,15 @@ export default function UserList({ users }){
           </Tr>
         </Thead>
         <Tbody>
-          {data.users.map(user => {
-            return (
-              <>
-              <Tr key={user.id}>
+              <Tr>
             <Td  px={["4","4","6"]}>
             <Checkbox colorScheme="pink"/>
             </Td>
             <Td>
               <Box>
-                <Link color="purple.400" onMouseEnter={() => handlePrefetchUser(user.id)}>
-                <Text fontWeight="bold">{user.name}</Text>
-                </Link>
-                <Text fontSize="sm" color="gray.300">{user.email}</Text>
-              </Box>
-            </Td>
-            { isWideVersion && <Td>{user.createdAt}</Td> }
-            { isWideVersion && <Td>
-            <Button as="a" size="sm" fontSize="sm" colorScheme="purple" leftIcon={<Icon as={RiPencilLine} fontSize="16"/>}>
-          { isWideVersion ? 'Editar' : '' }
-        </Button>
-            </Td> }
-          </Tr>
-          </>
-            )
-          })}
-        </Tbody>
-      </Table>
-      <Pagination
-      totalCountOfRegisters={data.totalCount}
-      currentPage={page}
-      onPageChange={setPage}
-      />
-        </>
-      )} */}
-      {/* FAKE */}
-      <Table colorScheme="whiteAlpha">
-        <Thead>
-          <Tr>
-            {/* <Th px={["4","4","6"]} color="gray.300" width="8">
-              <Checkbox colorScheme="pink"/>
-            </Th> */}
-            <Th>Usuário</Th>
-            { isWideVersion && <Th>Data de cadastro</Th> }
-            <Th width="8"></Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-              <Tr>
-            {/* <Td  px={["4","4","6"]}>
-            <Checkbox colorScheme="pink"/>
-            </Td> */}
-            <Td>
-              <Box>
-                {/* <Link color="pink.400" onMouseEnter={() => {}}> */}
+                <Link color="pink.400" onMouseEnter={() => {}}>
                 <Text color="pink.400" fontWeight="bold">{auth.currentUser?.displayName ? auth.currentUser?.displayName : auth.currentUser?.email.split('@')[0]}</Text>
-                {/* </Link> */}
+                </Link>
                 <Text fontSize="sm" color="gray.300">{auth.currentUser?.email ? auth.currentUser?.email : 'Desconhecido'}</Text>
               </Box>
             </Td>
@@ -150,9 +136,9 @@ export default function UserList({ users }){
               day: "2-digit", month: "long", year: "numeric"
             }).format(new Date())}</Td> }
             { isWideVersion && <Td>
-            {/* <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiPencilLine} fontSize="16"/>}>
+            <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiPencilLine} fontSize="16"/>}>
           { isWideVersion ? 'Editar' : '' }
-        </Button> */}
+        </Button>
             </Td> }
           </Tr>            
         </Tbody>
@@ -161,19 +147,19 @@ export default function UserList({ users }){
       totalCountOfRegisters={20}
       currentPage={page}
       onPageChange={setPage}
-      />
+      /> */}
       </Box>
       </Flex>
     </Box>
   );
 }
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const { users, totalCount } = await getUsers(1)
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { users, totalCount } = await getUsers(1)
 
-//   return {
-//     props: {
-//       users,
-//     }
-//   }
-// }
+  return {
+    props: {
+      users,
+    }
+  }
+}
