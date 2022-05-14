@@ -16,7 +16,7 @@ import { auth } from "../../services/firebase";
 
 
 export default function UserList({ users }){
-  makeServer()
+  // makeServer()
   const [page, setPage] = useState(1)
   const { data, isLoading, isFetching, error } = useUsers(page, {
     initialData: users,
@@ -53,18 +53,18 @@ export default function UserList({ users }){
       <Head>
     <title>Usuários | SW</title>
     </Head>
-      {/* <Header/> */}
+      <Header/>
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
-      {/* <Sidebar/> */}
+      <Sidebar/>
       <Box flex="1"  borderRadius={8} bg="gray.800" p="8">
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight="normal">
           Usuários
           { !isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4"/> }
           </Heading>
-        <NextLink href="dashboard" passHref>
+        <NextLink href="users/create" passHref>
         <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiAddLine} fontSize="20"/>}>
-          Dashboard
+          Criar novo
         </Button>
         </NextLink>
       </Flex>

@@ -56,7 +56,7 @@ export default function CreateUser(){
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
       <Sidebar/>
       <Box as="form" flex="1"  borderRadius={8} bg="gray.800" p={["6", "8"]} onSubmit={handleSubmit}>
-      <Heading size="lg" fontWeight="normal">Depoimento</Heading>
+      <Heading size="lg" fontWeight="normal">Formulário</Heading>
       <Divider my="6" borderColor="gray.700"/>
       <VStack spacing="8">
         <Input name="name" type="text" label="Nome" isRequired onChange={(event) => setUsername(event.target.value)} css={{'&::selection': {background: theme.colors.pink[500]}}}/>
