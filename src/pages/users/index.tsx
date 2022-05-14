@@ -7,13 +7,16 @@ import { Sidebar } from "../../components/Sidebar";
 import NextLink from 'next/link'
 import { getUsers, useUsers } from "../../services/hooks/useUsers";
 import { useState,  } from "react";
+import { makeServer } from '../../services/mirage'
 import { queryClient } from "../../services/queryClient";
 import { api } from "../../services/api";
 import { GetServerSideProps } from "next";
 import { theme } from "../../styles/theme";
 import { auth } from "../../services/firebase";
 
+
 export default function UserList({ users }){
+  makeServer()
   const [page, setPage] = useState(1)
   const { data, isLoading, isFetching, error } = useUsers(page, {
     initialData: users,
@@ -50,9 +53,9 @@ export default function UserList({ users }){
       <Head>
     <title>Usuários | SW</title>
     </Head>
-      <Header/>
+      {/* <Header/> */}
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
-      <Sidebar/>
+      {/* <Sidebar/> */}
       <Box flex="1"  borderRadius={8} bg="gray.800" p="8">
       <Flex mb="8" justify="space-between" align="center">
         <Heading size="lg" fontWeight="normal">
@@ -107,59 +110,18 @@ export default function UserList({ users }){
       />
         </>
       )}
-      {/* FAKE */}
-      {/* <Table colorScheme="whiteAlpha">
-        <Thead>
-          <Tr>
-            <Th px={["4","4","6"]} color="gray.300" width="8">
-              <Checkbox colorScheme="pink"/>
-            </Th>
-            <Th>Usuário</Th>
-            { isWideVersion && <Th>Data de cadastro</Th> }
-            <Th width="8"></Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-              <Tr>
-            <Td  px={["4","4","6"]}>
-            <Checkbox colorScheme="pink"/>
-            </Td>
-            <Td>
-              <Box>
-                <Link color="pink.400" onMouseEnter={() => {}}>
-                <Text color="pink.400" fontWeight="bold">{auth.currentUser?.displayName ? auth.currentUser?.displayName : auth.currentUser?.email.split('@')[0]}</Text>
-                </Link>
-                <Text fontSize="sm" color="gray.300">{auth.currentUser?.email ? auth.currentUser?.email : 'Desconhecido'}</Text>
-              </Box>
-            </Td>
-            { isWideVersion && <Td>{new Intl.DateTimeFormat('pt-BR', {
-              day: "2-digit", month: "long", year: "numeric"
-            }).format(new Date())}</Td> }
-            { isWideVersion && <Td>
-            <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiPencilLine} fontSize="16"/>}>
-          { isWideVersion ? 'Editar' : '' }
-        </Button>
-            </Td> }
-          </Tr>            
-        </Tbody>
-      </Table>
-      <Pagination
-      totalCountOfRegisters={20}
-      currentPage={page}
-      onPageChange={setPage}
-      /> */}
       </Box>
       </Flex>
     </Box>
   );
 }
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const { users, totalCount } = await getUsers(1)
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { users, totalCount } = await getUsers(1)
 
-//   return {
-//     props: {
-//       users,
-//     }
-//   }
-// }
+  return {
+    props: {
+      users,
+    }
+  }
+}
