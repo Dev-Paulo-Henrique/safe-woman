@@ -62,9 +62,9 @@ export default function UserList({ users }){
           Usuários
           { !isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4"/> }
           </Heading>
-        <NextLink href="users/create" passHref>
+        <NextLink href="dashboard" passHref>
         <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiAddLine} fontSize="20"/>}>
-          Criar novo
+          Dashboard
         </Button>
         </NextLink>
       </Flex>
@@ -116,12 +116,12 @@ export default function UserList({ users }){
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const { users, totalCount } = await getUsers(1)
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const { users, totalCount } = await getUsers(1)
 
-  return {
-    props: {
-      users,
-    }
-  }
-}
+//   return {
+//     props: {
+//       users,
+//     }
+//   }
+// }
