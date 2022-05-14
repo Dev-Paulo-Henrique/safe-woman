@@ -5,6 +5,8 @@ type User = {
   name: string;
   email: string;
   created_at: string;
+  local: string;
+  description: string;
 }
 
 export function makeServer(){
@@ -26,7 +28,13 @@ export function makeServer(){
           return faker.internet.email().toLowerCase()
         },
         createdAt(){
-          return faker.date.recent(10)
+          return faker.date.recent(100)
+        },
+        local(){
+          return faker.address.city()
+        },
+        description(){
+          return faker.lorem.text()
         }
       })
     },

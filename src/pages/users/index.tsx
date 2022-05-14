@@ -16,7 +16,7 @@ import { auth } from "../../services/firebase";
 
 
 export default function UserList({ users }){
-  // makeServer()
+  makeServer()
   const [page, setPage] = useState(1)
   const { data, isLoading, isFetching, error } = useUsers(page, {
     initialData: users,

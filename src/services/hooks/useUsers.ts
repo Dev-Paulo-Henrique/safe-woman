@@ -6,6 +6,9 @@ type User = {
   name: string;
   email: string;
   createdAt: string;
+  sendAt: string;
+  local: string;
+  description: string;
 }
 
 type GetUsersResponse = {
@@ -27,7 +30,14 @@ export async function getUsers (page: number): Promise<GetUsersResponse> {
       id: user.id,
       name: user.name,
       email: user.email,
-      createdAt: new Date().toLocaleDateString('pt-BR', {
+      local: user.local,
+      description: user.description,
+      sendAt: new Date(user.created_at).toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+      }),
+      createdAt: new Date(user.created_at).toLocaleDateString('pt-BR', {
         day: '2-digit',
         month: 'long',
         year: 'numeric',

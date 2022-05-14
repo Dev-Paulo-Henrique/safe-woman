@@ -6,8 +6,11 @@ import { Sidebar } from "../components/Sidebar";
 import NextLink from 'next/link'
 import { getUsers, useUsers } from "../services/hooks/useUsers";
 import { useState,  } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 import { queryClient } from "../services/queryClient";
 import { api } from "../services/api";
+import Swal from 'sweetalert2';
+import 'animate.css';
 import { GetServerSideProps } from "next";
 import Head from 'next/head'
 import { theme } from "../styles/theme";
@@ -15,26 +18,28 @@ import { database } from "../services/firebase";
 import { onValue, ref, onChildAdded, get, child } from 'firebase/database'
 import Modal from "react-modal";
 import useRoom from "../services/hooks/useRoom";
+import { makeServer } from '../services/mirage'
 // import { useRouter } from "next/router";
 
 type RoomQueryParams = {
   id?: string;
 };
 
-type Post = {
-  slug: string;
-  title: string;
-  excerpt: string;
-  updatedAt: string;
-}
+// type Post = {
+//   slug: string;
+//   title: string;
+//   excerpt: string;
+//   updatedAt: string;
+// }
 
-interface PostsProps{
-  posts: Post[]
-}
+// interface PostsProps{
+//   posts: Post[]
+// }
 
 
 
-export default function UserList({ users }, { posts }: PostsProps){
+export default function UserList({ users }){
+  makeServer()
   // const router = useRouter();
   // const { id: roomId }: RoomQueryParams = router.query;
   const { questions } = useRoom();
@@ -98,61 +103,57 @@ export default function UserList({ users }, { posts }: PostsProps){
           { !isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4"/> }
           </Heading>
           <Button size="sm" fontSize="sm" colorScheme="pink" isDisabled>
-          {size} Relatos
+          200 Relatos
         </Button>
       </Flex>
-      {/* {posts.map(post => (
-          <Link key={post.slug} href={`/posts/${post.slug}`}>
-          <a>
-            <time>{post.updatedAt}</time>
-            <strong>{post.title}</strong>
-            <p>{post.excerpt}</p>
-        </a>
-        </Link>
-        ))} */}
-      {/* { isLoading ? (
+      { isLoading ? (
         <Flex justify="center" >
           <Spinner/>
         </Flex>
       ) : error ? (
         <Flex justify="center" >
-          <Text>Falha ao obter dados dos usuários.</Text>
+          <Text>Falha ao obter relatos dos usuários.</Text>
         </Flex>
       ): (
         <>
         <Table colorScheme="whiteAlpha">
         <Thead>
           <Tr>
-            <Th px={["4","4","6"]} color="gray.300" width="8">
-              <Checkbox colorScheme="pink"/>
-            </Th>
             <Th>Usuário</Th>
-            { isWideVersion && <Th>Data de cadastro</Th> }
-            <Th width="8"></Th>
+            { isWideVersion && <Th>Data</Th> }
+            { isWideVersion && <Th>Local</Th> }
+            <Th>Relatos</Th>
           </Tr>
         </Thead>
         <Tbody>
-          {data.users.map(user => {
+          {data['users'].map(user => {
             return (
               <>
               <Tr key={user.id}>
-            <Td  px={["4","4","6"]}>
-            <Checkbox colorScheme="pink"/>
-            </Td>
             <Td>
               <Box>
-                <Link color="purple.400" onMouseEnter={() => handlePrefetchUser(user.id)}>
-                <Text fontWeight="bold">{user.name}</Text>
-                </Link>
+                <Text color="pink.400" fontWeight="bold">{user.name}</Text>
                 <Text fontSize="sm" color="gray.300">{user.email}</Text>
               </Box>
             </Td>
-            { isWideVersion && <Td>{user.createdAt}</Td> }
-            { isWideVersion && <Td>
-            <Button as="a" size="sm" fontSize="sm" colorScheme="purple" leftIcon={<Icon as={RiPencilLine} fontSize="16"/>}>
-          { isWideVersion ? 'Editar' : '' }
-        </Button>
-            </Td> }
+            { isWideVersion && <Td>{user.sendAt}</Td> }
+            { isWideVersion && <Td>{user.local}</Td> }
+            <Td>
+              <Button size="sm" fontSize="sm" colorScheme="pink" onClick={() => Swal.fire({
+  title: `Relato de ${user.name}`,
+  text: user.description,
+  confirmButtonColor: '#D53F8C',
+  confirmButtonText: 'Voltar',
+  showClass: {
+    popup: 'animate__animated animate__fadeInDown'
+  },
+  hideClass: {
+    popup: 'animate__animated animate__fadeOutUp'
+  }
+})}>
+              Ler
+            </Button>
+            </Td>
           </Tr>
           </>
             )
@@ -160,95 +161,14 @@ export default function UserList({ users }, { posts }: PostsProps){
         </Tbody>
       </Table>
       <Pagination
-      totalCountOfRegisters={data.totalCount}
+      totalCountOfRegisters={data['totalCount']}
       currentPage={page}
       onPageChange={setPage}
       />
+        
+      
         </>
-      )} */}
-      {/* FAKE */}
-      <Table colorScheme="whiteAlpha">
-        <Thead>
-          <Tr>
-            <Th>Usuário</Th>
-            { isWideVersion && <Th>Data</Th> }
-            <Th>Local</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-        <Tr>
-      <Td>
-        <Box>
-          <Link color="pink.400" onClick={() => setIsModalOpen(true)}> {/*RELATO AO CLICAR NO LINK*/}
-          <Text fontWeight="bold">Paulo Santos</Text>
-          </Link>
-          <Text fontSize="sm" color="gray.300">safewoman22@gmail.com</Text>
-        </Box>
-      </Td>
-      { isWideVersion && <Td>04/04/22</Td> }
-      <Td>Jaboatão dos Guararapes</Td>
-    </Tr> 
-        </Tbody>
-      </Table>
-      <Pagination
-      totalCountOfRegisters={20}
-      currentPage={page}
-      onPageChange={setPage}
-      />
-      <Modal
-          isOpen={isModalOpen}
-          ariaHideApp={false}
-          onRequestClose={() => setIsModalOpen(false)}
-          contentLabel="Ver comentário"
-          style={{
-            overlay: {
-              backgroundColor: "rgba(0, 0, 0, 0.90)",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            },
-            content: {
-              position: "initial",
-              width: "37rem",
-              maxWidth: "90vw",
-              height: "23rem",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: "0",
-              border: "none",
-              background: "transparent",
-            },
-          }}
-        >
-          <Flex h="100%" w="100%" flexDirection="column" justifyContent="center" alignItems="center">
-
-            <Text fontWeight="bold" fontSize="25" mt="6rem"  textAlign="center">Paulo Santos</Text>
-            <Text mb="2rem" overflowY="auto"
-    css={{
-      '&::-webkit-scrollbar': {
-        width: '4px',
-      },
-      '&::-webkit-scrollbar-track': {
-        width: '6px',
-      },
-      '&::-webkit-scrollbar-thumb': {
-        background: theme.colors.pink[500],
-        borderRadius: '24px',
-      },
-      '&::selection': {
-        background: theme.colors.pink[500],
-      },
-    }}>HEHE</Text>
-              <Button p="0.875rem 2rem" bg={theme.colors.pink[500]} border="1px solid transparent" borderRadius="0.5rem" _hover={{
-      bg: theme.colors.pink[600]
-    }} type="button" onClick={() => setIsModalOpen(false)}>
-                Voltar
-              </Button>
-          </Flex>
-        </Modal>
+      )}
       </Box>
       </Flex>
     </Box>
