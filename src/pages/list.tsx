@@ -1,23 +1,23 @@
 import { Box, Flex, Heading, Button, Icon, Table, Thead, Tr, Th, Checkbox, Tbody, Td, Text, useBreakpointValue, Spinner, Link } from "@chakra-ui/react";
-import { RiListCheck2, RiPencilLine } from "react-icons/ri";
+import { RiBookOpenLine } from "react-icons/ri";
 import { Header } from "../components/Header";
 import Pagination from "../components/Pagination";
 import { Sidebar } from "../components/Sidebar";
-import NextLink from 'next/link'
+// import NextLink from 'next/link'
 import { getUsers, useUsers } from "../services/hooks/useUsers";
 import { useState,  } from "react";
-import toast, { Toaster } from 'react-hot-toast';
-import { queryClient } from "../services/queryClient";
-import { api } from "../services/api";
+// import toast, { Toaster } from 'react-hot-toast';
+// import { queryClient } from "../services/queryClient";
+// import { api } from "../services/api";
 import Swal from 'sweetalert2';
 import 'animate.css';
-import { GetServerSideProps } from "next";
+// import { GetServerSideProps } from "next";
 import Head from 'next/head'
 import { theme } from "../styles/theme";
 import { database } from "../services/firebase";
-import { onValue, ref, onChildAdded, get, child } from 'firebase/database'
-import Modal from "react-modal";
-import useRoom from "../services/hooks/useRoom";
+import { onValue, ref, get, child } from 'firebase/database'
+// import Modal from "react-modal";
+// import useRoom from "../services/hooks/useRoom";
 import { makeServer } from '../services/mirage'
 // import { useRouter } from "next/router";
 
@@ -25,31 +25,19 @@ type RoomQueryParams = {
   id?: string;
 };
 
-// type Post = {
-//   slug: string;
-//   title: string;
-//   excerpt: string;
-//   updatedAt: string;
-// }
-
-// interface PostsProps{
-//   posts: Post[]
-// }
-
-
 
 export default function UserList({ users }){
   makeServer()
   // const router = useRouter();
   // const { id: roomId }: RoomQueryParams = router.query;
-  const { questions } = useRoom();
+  // const { questions } = useRoom();
   const [page, setPage] = useState(1)
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [ username, setUsername ] = useState('')
-  const [ local, setLocal ] = useState('')
-  const [ date, setDate ] = useState('')
-  const [ email, setEmail ] = useState('')
-  const [ description, setDescription ] = useState('')
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [ username, setUsername ] = useState('')
+  // const [ local, setLocal ] = useState('')
+  // const [ date, setDate ] = useState('')
+  // const [ email, setEmail ] = useState('')
+  // const [ description, setDescription ] = useState('')
   const [ size, setSize ] = useState(0)
 
   const { data, isLoading, isFetching, error } = useUsers(page, {
@@ -61,14 +49,14 @@ export default function UserList({ users }){
     lg: true
   })
 
-  async function handlePrefetchUser(userId: string){
-    await queryClient.prefetchQuery(['user', userId], async () => {
-      const response = await api.get(`users/${userId}`)
-      return response.data
-    }, {
-      staleTime: 1000 * 60 * 10
-    })
-  }
+  // async function handlePrefetchUser(userId: string){
+  //   await queryClient.prefetchQuery(['user', userId], async () => {
+  //     const response = await api.get(`users/${userId}`)
+  //     return response.data
+  //   }, {
+  //     staleTime: 1000 * 60 * 10
+  //   })
+  // }
 
   const roomRef = ref(database);
   const map = get(child(roomRef, `forms/`)).then((snapshot) => {
@@ -133,13 +121,15 @@ export default function UserList({ users }){
             <Td>
               <Box>
                 <Text color="pink.400" fontWeight="bold">{user.name}</Text>
+                <Link href={`mailto:${user.email}?Subject=Ol%E1%20${user.name}`}>
                 <Text fontSize="sm" color="gray.300">{user.email}</Text>
+                </Link>
               </Box>
             </Td>
             { isWideVersion && <Td>{user.sendAt}</Td> }
             { isWideVersion && <Td>{user.local}</Td> }
             <Td>
-              <Button size="sm" fontSize="sm" colorScheme="pink" onClick={() => Swal.fire({
+              <Button size="sm" leftIcon={<Icon as={RiBookOpenLine}/>} fontSize="sm" colorScheme="pink" onClick={() => Swal.fire({
   title: `Relato de ${user.name}`,
   text: user.description,
   confirmButtonColor: '#D53F8C',
