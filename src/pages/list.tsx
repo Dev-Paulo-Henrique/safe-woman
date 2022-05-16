@@ -121,7 +121,7 @@ export default function UserList({ users }){
             <Td>
               <Box>
                 <Text color="pink.400" fontWeight="bold">{user.name}</Text>
-                <Link href={`mailto:${user.email}?Subject=Ol%E1%20${user.name}`}>
+                <Link href={`mailto:${user.email}?Subject=Oi%20${user.name}`}>
                 <Text fontSize="sm" color="gray.300">{user.email}</Text>
                 </Link>
               </Box>
