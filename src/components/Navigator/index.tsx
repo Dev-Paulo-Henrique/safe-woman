@@ -13,15 +13,14 @@ import {
     PopoverContent,
     useColorModeValue,
     useBreakpointValue,
-    useDisclosure,
-  } from '@chakra-ui/react';
-  import {
-    HamburgerIcon,
-    CloseIcon,
-    ChevronDownIcon,
-    ChevronRightIcon,
-  } from '@chakra-ui/icons';
-  import { theme } from "../../styles/theme";
+    useDisclosure} from '@chakra-ui/react';
+import { RiMenuLine, RiCloseLine, RiArrowDropRightLine, RiArrowDropDownLine } from 'react-icons/ri'
+// import {
+//     HamburgerIcon,
+//     CloseIcon,
+//     ChevronDownIcon,
+//     ChevronRightIcon} from '@chakra-ui/icons';
+import { theme } from "../../styles/theme";
 
   
   export function WithSubnavigation() {
@@ -46,7 +45,7 @@ import {
             <IconButton
               onClick={onToggle}
               icon={
-                isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+                isOpen ? <Icon as={RiCloseLine} w={3} h={3} /> : <Icon as={RiMenuLine} w={5} h={5} />
               }
               variant={'ghost'}
               aria-label={'Toggle Navigation'}
@@ -179,7 +178,7 @@ import {
             justify={'flex-end'}
             align={'center'}
             flex={1}>
-            <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
+            <Icon color={'pink.400'} w={5} h={5} as={RiArrowDropRightLine} />
           </Flex>
         </Stack>
       </Link>
@@ -220,7 +219,7 @@ import {
           </Text>
           {children && (
             <Icon
-              as={ChevronDownIcon}
+              as={RiArrowDropDownLine}
               transition={'all .25s ease-in-out'}
               transform={isOpen ? 'rotate(180deg)' : ''}
               w={6}
