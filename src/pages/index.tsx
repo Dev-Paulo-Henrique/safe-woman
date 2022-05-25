@@ -30,7 +30,7 @@ export default function CreateUser(){
     <title>Safe Woman</title>
     </Head>
       <WithSubnavigation/>
-      <Img src="https://trello.com/1/cards/62607c2c96955b623b1a0323/attachments/628c3ff62c461769e950d981/download/Banner_para_loja_de_eletr%C3%B4nicos_smartphone_desconto_preto_e_vermelho_(1)_(1).png"/>
+      {/* <Img src="https://trello.com/1/cards/62607c2c96955b623b1a0323/attachments/628c3ff62c461769e950d981/download/Banner_para_loja_de_eletr%C3%B4nicos_smartphone_desconto_preto_e_vermelho_(1)_(1).png"/> */}
     </Box>
   );
 }

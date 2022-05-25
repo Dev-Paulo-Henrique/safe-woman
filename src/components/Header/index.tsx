@@ -23,7 +23,7 @@ export function Header() {
       ) }
       <Logo/>
       <Flex align="center" ml="auto" >
-        {/* { isWideVersion &&  <SearchBox/> } */}
+        { isWideVersion &&  <SearchBox/> }
         <NotificationsNav icon={'symbol'} href={''}/>
         <Profile showProfileData={isWideVersion}/>
       </Flex>

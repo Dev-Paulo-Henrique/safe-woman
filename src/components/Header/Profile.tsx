@@ -1,4 +1,4 @@
-import { Flex, Text, Box, Avatar } from '@chakra-ui/react'
+import { Flex, Text, Box, Avatar, AvatarBadge } from '@chakra-ui/react'
 import { auth } from '../../services/firebase'
 
 interface ProfileProps{
@@ -14,7 +14,12 @@ export function Profile({showProfileData = true}: ProfileProps) {
       <Text color="gray.300" fontSize="small">{auth.currentUser?.email ? auth.currentUser?.email : ''}</Text>
     </Box>
     )}
-    <Avatar size="md" name={auth.currentUser?.displayName ? auth.currentUser?.displayName : auth.currentUser?.email}/> 
+    {auth.currentUser?.email ? <Avatar size="md" name={auth.currentUser?.displayName ? auth.currentUser?.displayName : auth.currentUser?.email}>
+<AvatarBadge boxSize='1.25em' bg='green.500' />
+    </Avatar> : <Avatar size="md" name={auth.currentUser?.displayName ? auth.currentUser?.displayName : auth.currentUser?.email}>
+   <AvatarBadge borderColor='papayawhip' bg='tomato' boxSize='1.25em' />
+    </Avatar>}
+    
     </Flex>
   )
 }
