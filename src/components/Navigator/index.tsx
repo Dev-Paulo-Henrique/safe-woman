@@ -49,9 +49,13 @@ import { theme } from "../../styles/theme";
               }
               variant={'ghost'}
               aria-label={'Toggle Navigation'}
+              _hover={{
+                bg: 'gray.800',
+                color: 'white'
+              }}
             />
           </Flex>
-          <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+          <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }} alignItems="center">
             <Text
               textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
               fontFamily={'heading'}
@@ -72,7 +76,7 @@ import { theme } from "../../styles/theme";
             justify={'flex-end'}
             direction={'row'}
             spacing={6}>
-            <Button
+            {/* <Button
               as={'a'}
               fontSize={'sm'}
               fontWeight={400}
@@ -80,17 +84,17 @@ import { theme } from "../../styles/theme";
               color={'gray.300'}
               href={'/users/create'}>
               Cadastrar
-            </Button>
+            </Button> */}
             <Button
             as={'a'}
-              display={{ base: 'none', md: 'inline-flex' }}
+              // display={{ base: 'none', md: 'inline-flex' }}
               fontSize={'sm'}
               fontWeight={600}
               color={'white'}
-              bg={'pink.400'}
+              bg={'pink.500'}
               href={'/login'}
               _hover={{
-                bg: 'pink.300',
+                bg: 'pink.400',
               }}>
               Login
             </Button>
@@ -106,8 +110,8 @@ import { theme } from "../../styles/theme";
   
   const DesktopNav = () => {
     const linkColor = useColorModeValue('white', 'gray.200');
-    const linkHoverColor = useColorModeValue('gray.300', 'white');
-    const popoverContentBgColor = useColorModeValue('white', 'gray.800');
+    const linkHoverColor = useColorModeValue('pink.400', 'white');
+    const popoverContentBgColor = useColorModeValue('gray.800', 'gray.800');
   
     return (
       <Stack direction={'row'} spacing={4}>
@@ -159,7 +163,7 @@ import { theme } from "../../styles/theme";
         display={'block'}
         p={2}
         rounded={'md'}
-        _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+        _hover={{ bg: useColorModeValue('gray.800', 'gray.900'), color: useColorModeValue('white', 'gray.900')}}>
         <Stack direction={'row'} align={'center'}>
           <Box>
             <Text
@@ -188,7 +192,7 @@ import { theme } from "../../styles/theme";
   const MobileNav = () => {
     return (
       <Stack
-        bg={useColorModeValue('white', 'gray.800')}
+        bg={useColorModeValue('gray.800', 'gray.800')}
         p={4}
         display={{ md: 'none' }}>
         {NAV_ITEMS.map((navItem) => (
@@ -211,10 +215,15 @@ import { theme } from "../../styles/theme";
           align={'center'}
           _hover={{
             textDecoration: 'none',
+            color: 'pink.400'
           }}>
           <Text
             fontWeight={600}
-            color={useColorModeValue('gray.600', 'gray.200')}>
+            color={useColorModeValue('white', 'gray.200')}
+            _hover={{
+              textDecoration: 'none',
+              color: 'pink.400'
+            }}>
             {label}
           </Text>
           {children && (
@@ -238,7 +247,10 @@ import { theme } from "../../styles/theme";
             align={'start'}>
             {children &&
               children.map((child) => (
-                <Link key={child.label} py={2} href={child.href}>
+                <Link key={child.label} py={2} href={child.href} _hover={{
+                  textDecoration: 'none',
+                  color: 'pink.400'
+                }}>
                   {child.label}
                 </Link>
               ))}
@@ -292,17 +304,17 @@ import { theme } from "../../styles/theme";
         {
           label: 'Diário',
           subLabel: 'Preços a partir de R$12,00',
-          href: '#',
+          href: 'https://buy.stripe.com/test_14k9C63t1f0n4UMaF4',
         },
         {
           label: 'Semanal',
-          subLabel: 'Preços a partir de R$12,00',
-          href: '#',
+          subLabel: 'Preços a partir de R$84,00',
+          href: 'https://buy.stripe.com/test_cN28y20gP9G372U28z',
         },
         {
           label: 'Mensal',
-          subLabel: 'Preços a partir de R$12,00',
-          href: '#',
+          subLabel: 'Preços a partir de R$360,00',
+          href: 'https://buy.stripe.com/test_fZecOibZx3hFaf65kM',
         },
       ],
     },
