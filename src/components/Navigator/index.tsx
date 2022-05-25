@@ -52,7 +52,7 @@ import { theme } from "../../styles/theme";
             />
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-            {/* <Text
+            <Text
               textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
               fontFamily={'heading'}
               color={useColorModeValue('white', 'gray.800')}>
@@ -60,7 +60,7 @@ import { theme } from "../../styles/theme";
         Safe Woman
         <Text as="span" ml="1" color="pink.500">.</Text>
       </Text>
-            </Text> */}
+            </Text>
   
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
               <DesktopNav />
@@ -311,7 +311,7 @@ import { theme } from "../../styles/theme";
       href: '#',
     },
     {
-      label: 'Quem somos',
+      label: 'Quem somos?',
       href: '#',
     },
   ];
