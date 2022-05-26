@@ -15,7 +15,7 @@
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@hookform/resolvers": "^2.8.3",
-    "@stripe/stripe-js": "^1.27.0",
+    "@stripe/stripe-js": "^1.29.0",
     "animate.css": "^4.1.1",
     "apexcharts": "^3.29.0",
     "axios": "^0.24.0",
@@ -33,7 +33,7 @@
     "react-icons": "^4.3.1",
     "react-modal": "^3.14.4",
     "react-query": "^3.34.0",
-    "stripe": "^8.217.0",
+    "stripe": "8.165.0",
     "sweetalert2": "^11.4.14",
     "yup": "^0.32.11"
   },
