@@ -66,7 +66,7 @@ import { theme } from "../../styles/theme";
       </Text>
             </Text>
   
-            <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+            <Flex display={{ base: 'none', md: 'flex' }} ml={400}>
               <DesktopNav />
             </Flex>
           </Flex>
@@ -298,32 +298,32 @@ import { theme } from "../../styles/theme";
         },
       ],
     },
+    // {
+    //   label: 'Design',
+    //   href: '#',
+    // },
     {
-      label: 'Serviços',
+      label: 'Contato',
       children: [
         {
-          label: 'Diário',
-          subLabel: 'Preços a partir de R$12,00',
+          label: 'WhatsApp',
+          subLabel: 'Atendimento humano',
           href: 'https://buy.stripe.com/test_14k9C63t1f0n4UMaF4',
         },
         {
-          label: 'Semanal',
-          subLabel: 'Preços a partir de R$84,00',
+          label: 'Instagram',
+          subLabel: 'Atendimento humano',
           href: 'https://buy.stripe.com/test_cN28y20gP9G372U28z',
         },
         {
-          label: 'Mensal',
-          subLabel: 'Preços a partir de R$360,00',
+          label: 'E-mail',
+          subLabel: 'Atendimento humano',
           href: 'https://buy.stripe.com/test_fZecOibZx3hFaf65kM',
         },
       ],
     },
     {
-      label: 'Design',
-      href: '#',
-    },
-    {
-      label: 'Quem somos?',
+      label: 'Sobre',
       href: '#',
     },
   ];

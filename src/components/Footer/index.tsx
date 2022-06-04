@@ -1,4 +1,5 @@
 import {
+  AspectRatio,
     Box,
     chakra,
     Container,
@@ -10,7 +11,7 @@ import {
     VisuallyHidden,
   } from '@chakra-ui/react';
   import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-  import { RiInstagramFill, RiWhatsappFill} from 'react-icons/ri';
+  import { RiInstagramFill, RiWhatsappFill, RiMailFill} from 'react-icons/ri';
   import { ReactNode } from 'react';
   import { Logo } from '../Header/Logo'
   
@@ -86,17 +87,23 @@ import {
           <Logo />
           { isWideVersion && <Text>© 2022 Safe Woman. Todos os direitos reservados</Text>}
           <Stack direction={'row'} spacing={6}>
-            <SocialButton label={'WhatsApp'} href={'#'}>
+            <SocialButton label={'WhatsApp'} href={'https://api.whatsapp.com/send?phone=5581998715251&text=Ol%C3%A1%2C%20tudo%20bem%3F'}>
               <RiWhatsappFill />
             </SocialButton>
-            {/* <SocialButton label={'YouTube'} href={'#'}>
-              <FaYoutube />
-            </SocialButton> */}
-            <SocialButton label={'Instagram'} href={'#'}>
+            <SocialButton label={'Instagram'} href={'https://www.instagram.com/safewoman___'}>
               <RiInstagramFill />
+            </SocialButton>
+            <SocialButton label={'E-mail'} href={'mailto:safewoman22@gmail.com?subject=Busco%20atendimento%20humano'}>
+              <RiMailFill />
             </SocialButton>
           </Stack>
         </Container>
+        <AspectRatio ratio={16 / 9}>
+  <iframe
+    src='https://maps.google.com/maps?q=funda%C3%A7%C3%A3o%20bradesco&t=&z=17&ie=UTF8&iwloc=&output=embed'
+    // alt='demo'
+  />
+</AspectRatio>
       </Box>
     );
   }
