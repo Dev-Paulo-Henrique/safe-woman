@@ -66,7 +66,7 @@ import { theme } from "../../styles/theme";
       </Text>
             </Text>
   
-            <Flex display={{ base: 'none', md: 'flex' }} ml={400}>
+            <Flex display={{ base: 'none', md: 'flex' }} ml={350}>
               <DesktopNav />
             </Flex>
           </Flex>
@@ -273,7 +273,7 @@ import { theme } from "../../styles/theme";
       children: [
         {
           label: 'Lite',
-          subLabel: 'Disponível para 1 pessoas',
+          subLabel: 'Disponível para 1 pessoa',
           href: '#',
         },
         {
@@ -298,10 +298,10 @@ import { theme } from "../../styles/theme";
         },
       ],
     },
-    // {
-    //   label: 'Design',
-    //   href: '#',
-    // },
+    {
+      label: 'Clientes',
+      href: '/users',
+    },
     {
       label: 'Contato',
       children: [

@@ -26,6 +26,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import { auth, database } from "../services/firebase";
 import { SmallWithLogoLeft } from "../components/Footer";
+import { Price } from "../components/Table";
 
 interface HomeProps {
   product: {
@@ -411,6 +412,7 @@ export default function Home({ product }: HomeProps) {
           <circle cx="150.7284" cy="157.83035" r="20.82953" fill="#2f2e41" />
         </svg>
       </Flex>
+      <Price/>
       <Center>
         <Heading>Nossa Equipe</Heading>
       </Center>
