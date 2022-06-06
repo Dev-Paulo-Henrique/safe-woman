@@ -22,6 +22,7 @@
     "faunadb": "4.3.0",
     "firebase": "^9.6.11",
     "framer-motion": "^4.1.17",
+    "jquery": "^3.6.0",
     "next": "11.1.2",
     "next-auth": "^4.3.3",
     "nookies": "^2.5.2",
@@ -33,12 +34,15 @@
     "react-icons": "^4.3.1",
     "react-modal": "^3.14.4",
     "react-query": "^3.34.0",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
     "stripe": "8.165.0",
     "sweetalert2": "^11.4.14",
     "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/faker": "^5.5.9",
+    "@types/jquery": "^3.5.14",
     "@types/node": "^16.10.3",
     "@types/react": "^17.0.27",
     "eslint": "7.32.0",
