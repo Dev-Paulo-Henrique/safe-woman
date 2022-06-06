@@ -114,7 +114,7 @@ export function AboutUs(){
             <Avatar size="2xl" src="https://trello.com/1/cards/629a99a52a684d06bb95777e/attachments/629a99beb914e288c5a6d97f/download/Geovana.jpeg"/>
             </Center>
             <Text fontSize="lg" mt="0.5rem" textAlign="center">Geovana Silva</Text>
-            <Text color="gray.300" fontSize="small" textAlign="center" textAlign="center">Análise</Text>
+            <Text color="gray.300" fontSize="small" textAlign="center">Análise</Text>
             </Flex>
             <Flex>
             <Center>
