@@ -12,7 +12,7 @@ export function AboutUs(){
       })
 
     var settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 2000,
         slidesToShow: 4,
@@ -24,21 +24,24 @@ export function AboutUs(){
       };
 
       var settingsMobile = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 2000,
         slidesToShow: 2,
         slidesToScroll: 1,
         autoplay: true,
-        // centerMode: true,
-        // arrows: false,
+        centerMode: true,
+        arrows: false,
         // centerPadding: '120px',
 
       }
     return(
         <>
-        { isWideVersion ? 
-        <Box px="2xl" my="4rem">
+        { isWideVersion ? <>
+          <Center id="aboutUs">
+        <Heading>Nossa Equipe</Heading>
+      </Center>
+        <Box my="4rem">
         <Slider {...settings}>
             <Flex>
             <Center>
@@ -106,8 +109,9 @@ export function AboutUs(){
             </Flex>
             </Slider>
         </Box>
+        </>
         : 
-        <Box px={12} my="4rem">
+        <Box my="4rem">
         <Slider {...settingsMobile}>
             <Flex>
             <Center>

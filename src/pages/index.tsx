@@ -413,9 +413,6 @@ export default function Home({ product }: HomeProps) {
         </svg>
       </Flex>
       <Price/>
-      <Center>
-        <Heading>Nossa Equipe</Heading>
-      </Center>
       <AboutUs />
       <SmallWithLogoLeft/>
     </Box>

@@ -1,19 +1,29 @@
 import {
   AspectRatio,
     Box,
+    Button,
+    Center,
     chakra,
     Container,
+    Divider,
+    Flex,
+    Heading,
+    HStack,
     Link,
     Stack,
     Text,
+    theme,
     useBreakpointValue,
     useColorModeValue,
     VisuallyHidden,
+    VStack,
   } from '@chakra-ui/react';
-  import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
   import { RiInstagramFill, RiWhatsappFill, RiMailFill} from 'react-icons/ri';
   import { ReactNode } from 'react';
   import { Logo } from '../Header/Logo'
+import { auth } from '../../services/firebase';
+import { TextArea } from '../Form/TextArea';
+import { Input } from '../Form/Input';
   
 //   const Logo = (props: any) => {
 //     return (
@@ -71,7 +81,50 @@ import {
         lg: true
       })
 
-    return (
+      return (
+        <>
+      { isWideVersion && <>
+      <Center mb="1.5rem">
+        <Heading id="feedback">Fale Conosco</Heading>
+      </Center><Flex justifyContent="space-between" mx="6rem">
+<Box as="form" flex="1" bg="transparent" borderRadius={8} p={["6", "8"]}>
+  <Heading size="lg" fontWeight="normal">Formulário</Heading>
+  <Divider my="6" borderColor="gray.700"/>
+  <VStack spacing="8">
+    <HStack spacing="8">
+    <Input name="name" type="text" label="Nome" border="1px" borderColor="gray.200" isRequired/>
+    <Input name="telefone" type="tel" label="Telefone" border="1px" borderColor="gray.200" isRequired onChange={() => {}}/>
+    </HStack>
+    <Input name="email" type="email" label="E-mail" border="1px" borderColor="gray.200" isRequired onChange={() => {}}/>
+    <TextArea name="message" label="Mensagem" bgColor="transparent" borderColor="gray.200" border="1px" isRequired onChange={() => {}} _hover={{bg:'transparent'}} overflowY="auto"
+css={{
+  '&::selection': {
+    background: theme.colors.pink[500],
+  },
+}}/>
+  </VStack>
+  <Flex mt="8" justify="flex-end">
+    <HStack spacing="4">
+      <Button type="submit" colorScheme="pink">Enviar</Button>
+    </HStack>
+  </Flex>
+  </Box>
+  <Flex flexDirection="column" maxW="16rem" justifyContent="center" alignItems="center">
+    <Box bg="gray.800" p="2rem 1rem" borderRadius={8}>
+      <Text color="pink.500" fontWeight="bold" fontSize="2rem">Jaboatão dos Guararapes</Text>
+      <Text color="GrayText" mb="1.5rem">+55 81 9871-5251</Text>
+      <Text>R. Manoel Carneiro Leão, 1457 - Dois Carneiros, Jaboatão dos Guararapes - PE, 54280-530</Text>
+    </Box>
+  <AspectRatio ratio={16 / 9} w="16rem" h="13rem" m="1.5rem">
+<iframe
+src='https://maps.google.com/maps?q=r.%20manoel%20carneiro%20le%C3%A3o,%201457&t=&z=19&ie=UTF8&iwloc=&output=embed'
+// alt='demo'
+/>
+</AspectRatio>
+  </Flex>
+</Flex>
+  </>
+}
       <Box
         bg={useColorModeValue('gray.50', 'gray.900')}
         color={useColorModeValue('gray.700', 'gray.200')}
@@ -98,12 +151,7 @@ import {
             </SocialButton>
           </Stack>
         </Container>
-        <AspectRatio ratio={16 / 9}>
-  <iframe
-    src='https://maps.google.com/maps?q=funda%C3%A7%C3%A3o%20bradesco&t=&z=17&ie=UTF8&iwloc=&output=embed'
-    // alt='demo'
-  />
-</AspectRatio>
       </Box>
+      </>
     );
   }

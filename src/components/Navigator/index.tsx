@@ -55,7 +55,7 @@ import { theme } from "../../styles/theme";
               }}
             />
           </Flex>
-          <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }} alignItems="center">
+          <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'end' }} justifyContent="space-between" alignItems="center">
             <Text
               textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
               fontFamily={'heading'}
@@ -66,7 +66,7 @@ import { theme } from "../../styles/theme";
       </Text>
             </Text>
   
-            <Flex display={{ base: 'none', md: 'flex' }} ml={350}>
+            <Flex display={{ base: 'none', md: 'flex' }} >
               <DesktopNav />
             </Flex>
           </Flex>
@@ -88,6 +88,7 @@ import { theme } from "../../styles/theme";
             <Button
             as={'a'}
               // display={{ base: 'none', md: 'inline-flex' }}
+              ml={6}
               fontSize={'sm'}
               fontWeight={600}
               color={'white'}
@@ -269,34 +270,8 @@ import { theme } from "../../styles/theme";
   
   const NAV_ITEMS: Array<NavItem> = [
     {
-      label: 'Planos',
-      children: [
-        {
-          label: 'Lite',
-          subLabel: 'Disponível para 1 pessoa',
-          href: '#',
-        },
-        {
-          label: 'Duo',
-          subLabel: 'Disponível para 2 pessoas',
-          href: '#',
-        },
-        {
-          label: 'Basic',
-          subLabel: 'Disponível para 3 pessoas',
-          href: '#',
-        },
-        {
-          label: 'Classic',
-          subLabel: 'Disponível para 5 pessoas',
-          href: '#',
-        },
-        {
-          label: 'Premium',
-          subLabel: 'Disponível para 10 pessoas',
-          href: '#',
-        },
-      ],
+      label: 'Preços',
+      href: '#price'
     },
     {
       label: 'Clientes',
@@ -324,6 +299,10 @@ import { theme } from "../../styles/theme";
     },
     {
       label: 'Sobre',
-      href: '#',
+      href: '#aboutUs',
+    },
+    {
+      label: 'Feedback',
+      href: '#feedback',
     },
   ];

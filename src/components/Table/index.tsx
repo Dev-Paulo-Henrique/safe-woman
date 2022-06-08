@@ -12,7 +12,7 @@ export function Price(){
   })
 
   return(
-    <Box direction="column" h="100vh" overflowY="auto"
+    <Box id="price" direction="column" h="100vh" overflowY="auto"
     css={{
       '&::-webkit-scrollbar': {
         width: '4px',
