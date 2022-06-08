@@ -17,6 +17,7 @@ import {
     useColorModeValue,
     VisuallyHidden,
     VStack,
+    SimpleGrid
   } from '@chakra-ui/react';
   import { RiInstagramFill, RiWhatsappFill, RiMailFill} from 'react-icons/ri';
   import { ReactNode } from 'react';
@@ -91,10 +92,12 @@ import { Input } from '../Form/Input';
   <Heading size="lg" fontWeight="normal">Formulário</Heading>
   <Divider my="6" borderColor="gray.700"/>
   <VStack spacing="8">
-    <HStack spacing="50">
+    <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
+    <HStack>
     <Input name="name" type="text" label="Nome" border="1px" borderColor="gray.200" isRequired/>
     <Input name="telefone" type="tel" label="Telefone" border="1px" borderColor="gray.200" isRequired onChange={() => {}}/>
     </HStack>
+    </SimpleGrid>
     <Input name="email" type="email" label="E-mail" border="1px" borderColor="gray.200" isRequired onChange={() => {}}/>
     <TextArea name="message" label="Mensagem" bgColor="transparent" borderColor="gray.200" border="1px" isRequired onChange={() => {}} _hover={{bg:'transparent'}} overflowY="auto"
 css={{
