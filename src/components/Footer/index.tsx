@@ -91,7 +91,7 @@ import { Input } from '../Form/Input';
   <Heading size="lg" fontWeight="normal">Formulário</Heading>
   <Divider my="6" borderColor="gray.700"/>
   <VStack spacing="8">
-    <HStack spacing="8">
+    <HStack spacing="12">
     <Input name="name" type="text" label="Nome" border="1px" borderColor="gray.200" isRequired/>
     <Input name="telefone" type="tel" label="Telefone" border="1px" borderColor="gray.200" isRequired onChange={() => {}}/>
     </HStack>
