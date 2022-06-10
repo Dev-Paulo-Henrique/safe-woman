@@ -12,19 +12,7 @@ export function Price(){
   })
 
   return(
-    <Box id="price" direction="column" h="100vh" overflowY="auto"
-    css={{
-      '&::-webkit-scrollbar': {
-        width: '4px',
-      },
-      '&::-webkit-scrollbar-track': {
-        width: '6px',
-      },
-      '&::-webkit-scrollbar-thumb': {
-        background: theme.colors.gray[600],
-        borderRadius: '24px',
-      },
-    }}>
+    <Box id="price" direction="column">
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
       <Box flex="1"  borderRadius={8} bg="gray.800" p="8">
       <Flex mb="8" justify="space-between" align="center">

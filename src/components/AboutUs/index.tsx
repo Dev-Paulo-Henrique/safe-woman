@@ -37,15 +37,14 @@ export function AboutUs(){
       }
     return(
         <>
-        { isWideVersion ? <>
-          <Center id="aboutUs">
+          <Center id="aboutUs" mt="2rem">
         <Heading>Nossa Equipe</Heading>
       </Center>
+        { isWideVersion ? <>
         <Box my="4rem">
         <Slider {...settings}>
             <Flex>
             <Center>
-
             <Avatar size="2xl" src="https://trello.com/1/cards/629a99a52a684d06bb95777e/attachments/629a99beb914e288c5a6d97f/download/Geovana.jpeg"/>
             </Center>
             <Text fontSize="lg" mt="0.5rem" textAlign="center">Geovana Silva</Text>

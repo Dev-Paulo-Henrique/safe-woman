@@ -62,7 +62,7 @@ export default function Home({ product }: HomeProps) {
         maxW="1120px"
         margin="0 auto"
         padding="0 2rem"
-        h="calc(100vh - 60px)"
+        // h="calc(100vh - 60px)"
         alignItems="center"
         justifyContent="space-between"
       >

@@ -29,7 +29,7 @@ import { theme } from "../../styles/theme";
     return (
       <Box>
         <Flex
-          bg={useColorModeValue('transparent', 'gray.800')}
+          bg={useColorModeValue('gray.900', 'gray.800')}
           color={useColorModeValue('gray.600', 'white')}
           minH={'60px'}
           py={{ base: 2 }}
