@@ -4,8 +4,6 @@ import { theme } from '../../../../styles/theme'
 
 export default function termsOfService(){
     return(
-        <>
-            you&apos;re free
         <Box p="2rem 5rem" h="100vh" overflowY="auto"
         css={{
           '&::-webkit-scrollbar': {
@@ -30,6 +28,5 @@ export default function termsOfService(){
                 <br></br><br></br>5. Precisão dos materiais Os materiais exibidos no site da Safe Women podem incluir erros técnicos, tipográficos ou fotográficos. Safe Woman não garante que qualquer material em seu site seja preciso, completo ou atual. Safe Woman pode fazer alterações nos materiais contidos em seu site a qualquer momento, sem aviso prévio. No entanto, Safe Woman não se compromete a atualizar os materiais.
                 <br></br><br></br>6. O Safe Woman não analisou todos os sites vinculados ao seu site e não é responsável pelo conteúdo de nenhum site vinculado. A inclusão de qualquer link não implica endosso por Safe Woman do site. O uso de qualquer site vinculado é por conta e risco do usuário. Modificações O Safe Woman pode revisar estes termos de serviço do site a qualquer momento, sem aviso prévio. Ao usar este site, você concorda em ficar vinculado à versão atual destes termos de serviço. Lei aplicável Estes termos e condições são regidos e interpretados de acordo com as leis do Safe Woman e você se submete irrevogavelmente à jurisdição exclusiva dos tribunais naquele estado ou localidade.</Text>
         </Box>
-            </>
     )
 }
