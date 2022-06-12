@@ -16,7 +16,7 @@ export default function termsOfService(){
             background: theme.colors.gray[600],
             borderRadius: '24px',
           },
-        }}>
+        }}>&apos;
             <Head>
                 <title>Termos de Serviço | SW</title>
             </Head>
