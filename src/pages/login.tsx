@@ -1,4 +1,4 @@
-import { Flex,  Button, Stack, Divider, HStack, Icon } from '@chakra-ui/react'
+import { Flex,  Button, Stack, Divider, HStack, Text, Icon, Checkbox } from '@chakra-ui/react'
 import { Input } from '../components/Form/Input'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -14,7 +14,7 @@ import { useState } from 'react'
 import { theme } from '../styles/theme'
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import Link from 'next/link'
-import { RiGoogleFill } from 'react-icons/ri'
+import { RiGoogleFill, RiFacebookFill } from 'react-icons/ri'
 
 
 type SignInFormData = {
@@ -153,8 +153,23 @@ export default function SignIn() {
           </Link>
          <Button w={140} type="submit" mt="6" colorScheme="pink"  size="lg" isLoading={formState.isSubmitting}>Entrar</Button>
         </Flex>
-         <Divider my="3" borderColor="gray.700"/>
+        <Flex justifyContent="space-between" alignItems="center" mt="3">
+        <Checkbox borderColor="gray.300" colorScheme="pink"><Text color="gray.300">Lembrar-me</Text></Checkbox>
+        <Text color="gray.300" _hover={{color: theme.colors.pink[400], transition: '0.25s'}}>
+          <Link href="#" passHref>Esqueceu a senha?</Link>
+          </Text>
+        </Flex>
+         <Divider my="3" borderColor="gray.300"/>
+         <Button type="button" mb="3" colorScheme="facebook"  size="lg" onClick={() => toast("Desenvolvendo...")}><Icon as={RiFacebookFill} fontSize="30"/></Button>
          <Button type="button" colorScheme="red"  size="lg" onClick={handleLoginWithGoogle}><Icon as={RiGoogleFill} fontSize="30"/></Button>
+         <Text color="gray.300" fontSize="0.8rem" align="center" mt="3">
+          Ao continuar, você concorda com os
+          <b><Link href="/_/_/policy/terms-of-service" passHref> Termos de Serviço</Link></b>
+          , com a
+          <b><Link href="/_/_/policy/privacy-policy" passHref> Política de Privacidade </Link></b>
+           e com o
+          <b><Link href="/_/_/policy/use-of-cookies" passHref> uso de cookies </Link></b>
+            da Safe Woman.</Text>
         </Flex>
     </Flex>
   )
