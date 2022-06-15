@@ -107,6 +107,15 @@ export function AboutUs(){
             <Text color="gray.300" fontSize="small" textAlign="center">Teste</Text>
             </Flex>
             </Slider>
+
+            <Flex m="2rem" justifyContent="space-between">
+            <Flex justifyContent="space-between" flexDir="column">
+            <Text fontSize="4rem" fontWeight="bold" align="center">Quem somos?</Text>
+            <Text align="justify">A Safe Woman é uma startup de segurança brasileira focada em entregar o melhor valor a seus clientes. Nós começamos a operar em Abril de 2022 com os melhores profissionais do país. Nossa especialidade é no desenvolvimento e aprimoração da segurança feminina utilizando as melhores tecnologias.</Text>
+            <Text alig="justify">A Safe Woman segue uma filosofia simples de Oss: dedicar seu talento e tecnologia à criação de produtos e serviços superiores que contribuam para uma sociedade global melhor.</Text>
+            </Flex>
+            <Img maxW="28rem" borderRadius={8} ml={4} src="https://trello.com/1/cards/629a99a52a684d06bb95777e/attachments/62a9bf0d5caccd08b376817f/download/grupo.jpg"/>
+            </Flex>
         </Box>
         </>
         : 

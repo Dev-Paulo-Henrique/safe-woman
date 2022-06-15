@@ -15,6 +15,7 @@ import { theme } from '../styles/theme'
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import Link from 'next/link'
 import { RiGoogleFill, RiFacebookFill } from 'react-icons/ri'
+import { sendPasswordResetEmail } from 'firebase/auth';
 
 
 type SignInFormData = {
@@ -31,6 +32,7 @@ export default function SignIn() {
   const router = useRouter()
   // const { user, signInWithGoogle } = useAuth();
   const [ email, setEmail ] = useState('')
+  const [ checkbox, setCheckbox ] = useState(true)
   const [ password, setPassword ] = useState('')
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(signInFormSchema)
@@ -88,6 +90,24 @@ export default function SignIn() {
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
   });
+  }
+
+  async function resetPassword(){
+    await sendPasswordResetEmail(auth, email)
+    .then((result) => {
+      toast.success('Verifique seu E-mail');
+      // router.push('/dashboard')
+    }).catch((error) => {
+      toast.error('Digite seu E-mail');
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
   }
 
   
@@ -151,16 +171,16 @@ export default function SignIn() {
          <Link href="/users/create" passHref>
         <Button as="a" w={140} mt="6" colorScheme="whiteAlpha" size="lg">Criar</Button>
           </Link>
-         <Button w={140} type="submit" mt="6" colorScheme="pink"  size="lg" isLoading={formState.isSubmitting}>Entrar</Button>
+         <Button w={140} type="submit" mt="6" colorScheme="pink"  size="lg" isDisabled={ checkbox ? true : false } isLoading={formState.isSubmitting}>Entrar</Button>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center" mt="3">
-        <Checkbox borderColor="gray.300" colorScheme="pink"><Text color="gray.300">Lembrar-me</Text></Checkbox>
-        <Text color="gray.300" _hover={{color: theme.colors.pink[400], transition: '0.25s'}}>
-          <Link href="#" passHref>Esqueceu a senha?</Link>
+        <Checkbox borderColor="gray.300" colorScheme="pink" onChange={() => checkbox ? setCheckbox(false) : setCheckbox(true)}><Text color="gray.300">Lembrar-me</Text></Checkbox>
+        <Text color="gray.300" onClick={resetPassword} _hover={{color: theme.colors.pink[400], transition: '0.25s', cursor: 'pointer'}}>
+          Esqueceu a senha?
           </Text>
         </Flex>
          <Divider my="3" borderColor="gray.300"/>
-         <Button type="button" mb="3" colorScheme="facebook"  size="lg" onClick={() => toast("Desenvolvendo...")}><Icon as={RiFacebookFill} fontSize="30"/></Button>
+         <Button type="button" mb="3" colorScheme="facebook" isDisabled size="lg" onClick={() => toast("Desenvolvendo...")}><Icon as={RiFacebookFill} fontSize="30"/></Button>
          <Button type="button" colorScheme="red"  size="lg" onClick={handleLoginWithGoogle}><Icon as={RiGoogleFill} fontSize="30"/></Button>
          <Text color="gray.300" fontSize="0.8rem" align="center" mt="3">
           Ao continuar, você concorda com os

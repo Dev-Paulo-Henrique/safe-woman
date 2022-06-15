@@ -21,10 +21,22 @@ import { RiMenuLine, RiCloseLine, RiArrowDropRightLine, RiArrowDropDownLine } fr
 //     ChevronDownIcon,
 //     ChevronRightIcon} from '@chakra-ui/icons';
 import { theme } from "../../styles/theme";
+import { auth } from '../../services/firebase';
+import { useRouter } from "next/router";
 
   
   export function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
+
+    const router = useRouter()
+
+    async function verify(){
+      if(await auth.currentUser?.email){
+        router.push('/dashboard')
+      }else{
+        router.push('/login')
+      }
+    }
   
     return (
       <Box>
@@ -86,14 +98,15 @@ import { theme } from "../../styles/theme";
               Cadastrar
             </Button> */}
             <Button
-            as={'a'}
+            // as={'a'}
               // display={{ base: 'none', md: 'inline-flex' }}
               ml={6}
               fontSize={'sm'}
               fontWeight={600}
               color={'white'}
               bg={'pink.500'}
-              href={'/login'}
+              // href={'/login'}
+              onClick={verify}
               _hover={{
                 bg: 'pink.400',
               }}>

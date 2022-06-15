@@ -9,6 +9,7 @@ import {
   HStack,
   Button,
   Img,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { Header } from "./../components/Header";
 import { Sidebar } from "./../components/Sidebar";
@@ -35,7 +36,12 @@ interface HomeProps {
   };
 }
 
+
 export default function Home({ product }: HomeProps) {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    md: true
+  })
   return (
     <Box
       direction="column"
@@ -64,10 +70,9 @@ export default function Home({ product }: HomeProps) {
         padding="0 2rem"
         // h="calc(100vh - 60px)"
         alignItems="center"
-        justifyContent="space-between"
+        justifyContent="center"
       >
         <Box maxW="600px">
-          {/* <Text fontSize="1.5rem" fontWeight="bold">👏 Olá, bem-vinda!</Text> */}
           <Text
             fontSize="4.5rem"
             fontWeight="900"
@@ -92,7 +97,7 @@ export default function Home({ product }: HomeProps) {
           </Box>
           <SubscribeButton />
         </Box>
-        <svg
+        { isWideVersion && <svg
           xmlns="http://www.w3.org/2000/svg"
           data-name="Layer 1"
           width="1123"
@@ -410,7 +415,7 @@ export default function Home({ product }: HomeProps) {
             fill="#ffb9b9"
           />
           <circle cx="150.7284" cy="157.83035" r="20.82953" fill="#2f2e41" />
-        </svg>
+        </svg>}
       </Flex>
       <Price/>
       <AboutUs />
