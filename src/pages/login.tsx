@@ -171,7 +171,7 @@ export default function SignIn() {
          <Link href="/users/create" passHref>
         <Button as="a" w={140} mt="6" colorScheme="whiteAlpha" size="lg">Criar</Button>
           </Link>
-         <Button w={140} type="submit" mt="6" colorScheme="pink"  size="lg" isDisabled={ checkbox ? true : false } isLoading={formState.isSubmitting}>Entrar</Button>
+         <Button w={140} type="submit" mt="6" colorScheme="pink"  size="lg" isLoading={formState.isSubmitting}>Entrar</Button>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center" mt="3">
         <Checkbox borderColor="gray.300" colorScheme="pink" onChange={() => checkbox ? setCheckbox(false) : setCheckbox(true)}><Text color="gray.300">Lembrar-me</Text></Checkbox>
@@ -180,7 +180,7 @@ export default function SignIn() {
           </Text>
         </Flex>
          <Divider my="3" borderColor="gray.300"/>
-         <Button type="button" mb="3" colorScheme="facebook" isDisabled size="lg" onClick={() => toast("Desenvolvendo...")}><Icon as={RiFacebookFill} fontSize="30"/></Button>
+         {/* <Button type="button" mb="3" colorScheme="facebook" isDisabled size="lg" onClick={() => toast("Desenvolvendo...")}><Icon as={RiFacebookFill} fontSize="30"/></Button> */}
          <Button type="button" colorScheme="red"  size="lg" onClick={handleLoginWithGoogle}><Icon as={RiGoogleFill} fontSize="30"/></Button>
          <Text color="gray.300" fontSize="0.8rem" align="center" mt="3">
           Ao continuar, você concorda com os
