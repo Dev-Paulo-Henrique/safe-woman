@@ -105,18 +105,18 @@ type FormData = {
           email: email,
           message: message,
         });
-        const accountSid = "AC1acdaabb9e51318d910a47dc955fe456";
-        const authToken = "118d867ed1a086f9121e8e43b352670a"
-        const client = require('twilio')(accountSid, authToken);
+//         const accountSid = "AC1acdaabb9e51318d910a47dc955fe456";
+//         const authToken = "118d867ed1a086f9121e8e43b352670a"
+//         const client = require('twilio')(accountSid, authToken);
 
-client.messages
-      .create({
-         body: 'McAvoy or Stewart? These timelines can get so confusing.',
-         from: '+18454157495',
-        //  statusCallback: 'http://postb.in/1234abcd',
-         to: '+5581997528011'
-       })
-      .then(message => console.log(message.sid)).catch(error => console.log(error));
+// client.messages
+//       .create({
+//          body: 'McAvoy or Stewart? These timelines can get so confusing.',
+//          from: '+18454157495',
+//         //  statusCallback: 'http://postb.in/1234abcd',
+//          to: '+5581997528011'
+//        })
+//       .then(message => console.log(message.sid)).catch(error => console.log(error));
         toast.success('Enviado')
       }
 
