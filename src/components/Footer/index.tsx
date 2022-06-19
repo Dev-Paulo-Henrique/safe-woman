@@ -19,8 +19,9 @@ import {
     VStack,
     SimpleGrid
   } from '@chakra-ui/react';
-  import toast, { Toaster } from 'react-hot-toast';
+  import toast, { ErrorIcon, Toaster } from 'react-hot-toast';
   import * as yup from 'yup';
+  import React from 'react'
   import { yupResolver } from '@hookform/resolvers/yup'
   import { RiInstagramFill, RiWhatsappFill, RiMailFill} from 'react-icons/ri';
   import { ReactNode, useState } from 'react';
@@ -31,7 +32,7 @@ import { Input } from '../Form/Input';
 import { push, child, ref, set } from "firebase/database";
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-type SignInFormData = {
+type FormData = {
   username: string;
   email: string;
   password: string;
@@ -92,26 +93,31 @@ type SignInFormData = {
       })
         const { errors } = formState
 
-      const handleSignIn: SubmitHandler<SignInFormData> = async (values)=>{
+      const handleSendForm: SubmitHandler<FormData> = async (values)=>{
         await new Promise(resolve => setTimeout(resolve, 2000))
+        const newPostKey = push(child(ref(database), 'feedback')).key;
+        set(ref(database, `feedback/${newPostKey}/`), {
+          username: username,
+          tel: tel,
+          date: new Intl.DateTimeFormat('pt-BR', {
+            year: 'numeric', month: '2-digit', day: '2-digit'
+          }).format(new Date()),
+          email: email,
+          message: message,
+        });
+        const accountSid = "AC1acdaabb9e51318d910a47dc955fe456";
+        const authToken = "118d867ed1a086f9121e8e43b352670a"
+        const client = require('twilio')(accountSid, authToken);
+
+client.messages
+      .create({
+         body: 'McAvoy or Stewart? These timelines can get so confusing.',
+         from: '+18454157495',
+        //  statusCallback: 'http://postb.in/1234abcd',
+         to: '+5581997528011'
+       })
+      .then(message => console.log(message.sid)).catch(error => console.log(error));
         toast.success('Enviado')
-        // async function handleSubmitForm(event){
-        //   event.preventDefault
-          
-          // const newPostKey = push(child(ref(database), 'feedback')).key;
-      
-          // set(ref(database, `feedback/`), {
-            // username: username,
-            // local: tel,
-            // date: new Intl.DateTimeFormat('pt-BR', {
-            //   year: '2-digit', month: '2-digit', day: '2-digit'
-            // }).format(new Date()),
-            // email: email,
-            // message: message,
-          //   oi: 'po'
-          // });
-      
-        // }
       }
 
 
@@ -124,7 +130,7 @@ type SignInFormData = {
         <Heading id="feedback">Fale Conosco</Heading>
       </Center>
       <Flex justifyContent="space-between" mx={useBreakpointValue({lg: '2rem'})}>
-<Box as="form" flex="1" bg="transparent" borderRadius={8} p={["6", "8"]} onSubmit={handleSubmit(handleSignIn)}>
+<Box as="form" flex="1" bg="transparent" borderRadius={8} p={["6", "8"]} onSubmit={handleSubmit(handleSendForm)}>
   <Heading size="lg" fontWeight="normal">Formulário</Heading>
   <Divider my="6" borderColor="gray.700"/>
   <VStack spacing="8">

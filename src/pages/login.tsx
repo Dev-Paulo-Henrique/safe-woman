@@ -32,7 +32,7 @@ export default function SignIn() {
   const router = useRouter()
   // const { user, signInWithGoogle } = useAuth();
   const [ email, setEmail ] = useState('')
-  const [ checkbox, setCheckbox ] = useState(true)
+  // const [ checkbox, setCheckbox ] = useState(true)
   const [ password, setPassword ] = useState('')
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(signInFormSchema)
@@ -98,7 +98,7 @@ export default function SignIn() {
       toast.success('Verifique seu E-mail');
       // router.push('/dashboard')
     }).catch((error) => {
-      toast.error('Digite seu E-mail');
+      // toast.error('Digite seu E-mail');
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -106,6 +106,14 @@ export default function SignIn() {
       const email = error.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
+      if(errorCode === 'auth/user-not-found'){
+        toast.error('Usuário não encontrado');
+      }else if(errorCode === 'auth/invalid-email'){
+        toast.error('E-mail inválido');
+      }else if(errorCode === 'auth/missing-email'){
+        toast.error('E-mail ausente');
+      }
+      // toast.error(errorCode, errorMessage);
       // ...
     });
   }
@@ -173,8 +181,8 @@ export default function SignIn() {
           </Link>
          <Button w={140} type="submit" mt="6" colorScheme="pink"  size="lg" isLoading={formState.isSubmitting}>Entrar</Button>
         </Flex>
-        <Flex justifyContent="space-between" alignItems="center" mt="3">
-        <Checkbox borderColor="gray.300" colorScheme="pink" onChange={() => checkbox ? setCheckbox(false) : setCheckbox(true)}><Text color="gray.300">Lembrar-me</Text></Checkbox>
+        <Flex justifyContent="flex-end" alignItems="center" mt="3">
+        {/* <Checkbox borderColor="gray.300" colorScheme="pink" onChange={() => checkbox ? setCheckbox(false) : setCheckbox(true)}><Text color="gray.300">Lembrar-me</Text></Checkbox> */}
         <Text color="gray.300" onClick={resetPassword} _hover={{color: theme.colors.pink[400], transition: '0.25s', cursor: 'pointer'}}>
           Esqueceu a senha?
           </Text>
