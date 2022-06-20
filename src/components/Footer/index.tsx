@@ -21,16 +21,17 @@ import {
   } from '@chakra-ui/react';
   import toast, { ErrorIcon, Toaster } from 'react-hot-toast';
   import * as yup from 'yup';
-  import React from 'react'
   import { yupResolver } from '@hookform/resolvers/yup'
   import { RiInstagramFill, RiWhatsappFill, RiMailFill} from 'react-icons/ri';
   import { ReactNode, useState } from 'react';
   import { Logo } from '../Header/Logo'
+  import React from 'react';
 import { auth, database } from '../../services/firebase';
 import { TextArea } from '../Form/TextArea';
 import { Input } from '../Form/Input';
 import { push, child, ref, set } from "firebase/database";
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { twilio } from '../../services/twilio'
 
 type FormData = {
   username: string;
@@ -105,19 +106,8 @@ type FormData = {
           email: email,
           message: message,
         });
-//         const accountSid = "AC1acdaabb9e51318d910a47dc955fe456";
-//         const authToken = "118d867ed1a086f9121e8e43b352670a"
-//         const client = require('twilio')(accountSid, authToken);
 
-// client.messages
-//       .create({
-//          body: 'McAvoy or Stewart? These timelines can get so confusing.',
-//          from: '+18454157495',
-//         //  statusCallback: 'http://postb.in/1234abcd',
-//          to: '+5581997528011'
-//        })
-//       .then(message => console.log(message.sid)).catch(error => console.log(error));
-        toast.success('Enviado')
+        twilio
       }
 
 
@@ -188,7 +178,7 @@ src='https://maps.google.com/maps?q=r.%20manoel%20carneiro%20le%C3%A3o,%201457&t
           <Logo />
           { isWideVersion && <Text>© 2022 Safe Woman. Todos os direitos reservados</Text>}
           <Stack direction={'row'} spacing={6}>
-            <SocialButton label={'WhatsApp'} href={'https://api.whatsapp.com/send?phone=5581998715251&text=Ol%C3%A1%2C%20tudo%20bem%3F'}>
+            <SocialButton label={'WhatsApp'} href={'https://api.whatsapp.com/send?phone=5581992943936&text=Ol%C3%A1%2C%20tudo%20bem%3F'}>
               <RiWhatsappFill />
             </SocialButton>
             <SocialButton label={'Instagram'} href={'https://www.instagram.com/safewoman___'}>
