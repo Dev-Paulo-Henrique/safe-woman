@@ -91,7 +91,7 @@ export default function Home({ product }: HomeProps) {
               Garanta seu acesso
               <br />
               <Text color="pink.500" fontWeight="bold">
-                por apenas {product.amount}
+                por apenas R$ 499,99
               </Text>
             </Text>
           </Box>
