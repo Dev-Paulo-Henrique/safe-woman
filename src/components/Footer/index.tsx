@@ -31,7 +31,6 @@ import { TextArea } from '../Form/TextArea';
 import { Input } from '../Form/Input';
 import { push, child, ref, set } from "firebase/database";
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { twilio } from '../../services/twilio'
 
 type FormData = {
   username: string;
@@ -107,7 +106,7 @@ type FormData = {
           message: message,
         });
 
-        twilio
+        
       }
 
 
