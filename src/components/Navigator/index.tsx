@@ -100,7 +100,7 @@ import { useRouter } from "next/router";
             <Button
             // as={'a'}
               // display={{ base: 'none', md: 'inline-flex' }}
-              ml={6}
+              ml={{ base: -2, md: 6 }}
               fontSize={'sm'}
               fontWeight={600}
               color={'white'}
@@ -291,26 +291,6 @@ import { useRouter } from "next/router";
       href: '/users',
     },
     {
-      label: 'Contato',
-      children: [
-        {
-          label: 'WhatsApp',
-          subLabel: 'Atendimento humano',
-          href: 'https://buy.stripe.com/test_14k9C63t1f0n4UMaF4',
-        },
-        {
-          label: 'Instagram',
-          subLabel: 'Atendimento humano',
-          href: 'https://buy.stripe.com/test_cN28y20gP9G372U28z',
-        },
-        {
-          label: 'E-mail',
-          subLabel: 'Atendimento humano',
-          href: 'https://buy.stripe.com/test_fZecOibZx3hFaf65kM',
-        },
-      ],
-    },
-    {
       label: 'Sobre',
       href: '#aboutUs',
     },
@@ -318,4 +298,39 @@ import { useRouter } from "next/router";
       label: 'Feedback',
       href: '#feedback',
     },
+    {
+      label: 'Contato',
+      children: [
+        {
+          label: 'WhatsApp',
+          subLabel: 'Atendimento humano',
+          href: 'https://api.whatsapp.com/send?phone=5581992943936&text=Ol%C3%A1%2C%20tudo%20bem%3F',
+        },
+        {
+          label: 'Instagram',
+          subLabel: 'Atendimento humano',
+          href: 'https://www.instagram.com/safewoman22/',
+        },
+        {
+          label: 'E-mail',
+          subLabel: 'Atendimento humano',
+          href: 'mailto:safewoman22@gmail.com?subject=Busco%20atendimento%20humano',
+        },
+      ],
+    },
+    {
+      label: 'Aplicativo',
+      children: [
+        {
+          label: 'Android',
+          subLabel: 'Google Play',
+          href: '#',
+        },
+        {
+          label: 'IOS',
+          subLabel: 'App Store',
+          href: '#',
+        }
+      ],
+    }
   ];

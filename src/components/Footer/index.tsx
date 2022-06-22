@@ -180,7 +180,7 @@ src='https://maps.google.com/maps?q=r.%20manoel%20carneiro%20le%C3%A3o,%201457&t
             <SocialButton label={'WhatsApp'} href={'https://api.whatsapp.com/send?phone=5581992943936&text=Ol%C3%A1%2C%20tudo%20bem%3F'}>
               <RiWhatsappFill />
             </SocialButton>
-            <SocialButton label={'Instagram'} href={'https://www.instagram.com/safewoman___'}>
+            <SocialButton label={'Instagram'} href={'https://www.instagram.com/safewoman22/'}>
               <RiInstagramFill />
             </SocialButton>
             <SocialButton label={'E-mail'} href={'mailto:safewoman22@gmail.com?subject=Busco%20atendimento%20humano'}>
