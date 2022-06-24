@@ -19,7 +19,7 @@ import {
   } from "@chakra-ui/react";
   import Head from 'next/head'
 
-import {api} from './api';
+import {api} from '../../services/integration';
 
 import DevForm from '../../components/DevForm'
 import DevItem from '../../components/DevItem';
