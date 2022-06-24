@@ -53,13 +53,13 @@ export default function Registration() {
         <Head>
     <title>Cadastro | SW</title>
     </Head>
-      <Box w="320px" h="480px" bg="#1F2029" m="0 2rem 2rem 2rem" borderRadius="0.375rem" p="30px 20px">
+      <Box w="320px" h="460px" bg="#1F2029" m={isWideVersion ? "0 2rem 2rem 2rem" : "auto auto 3rem auto"} borderRadius="0.375rem" p="30px 20px">
         <Text fontSize="20px" fontWeight="bold" textAlign="center" display="block" color="#fff">Cadastrar</Text>
         <DevForm onSubmit={handleAddDev} />
       </Box>
 
       <Box flex={1}>
-        <UnorderedList display="grid" gridTemplateColumns="repeat(2, 1fr)" gridGap="20px" listStyle="none"mr="20px">
+        <UnorderedList display="grid" gridTemplateColumns={isWideVersion ? "repeat(2, 1fr)" : "repeat(1, 1fr)" } gridGap="20px" listStyle="none" mr="1rem">
           {devs.map(dev => (
             <DevItem key={dev._id} dev={dev} />
           ))}

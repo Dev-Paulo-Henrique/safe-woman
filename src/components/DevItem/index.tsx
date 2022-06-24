@@ -24,12 +24,12 @@ export default function DevItem({ dev }) {
   return (
     <List
     background= '#FFF'
-  boxShadow= '0 0 14px 0 rgba(0, 0, 0, 0.02)'
+  // boxShadow= '0 0 14px 0 rgba(0, 0, 0, 0.02)'
   borderRadius= '0.375rem'
   padding= '20px'
    className="dev-item">
       <Flex alignItems="center">
-        <Img w="54px" h="54px" borderRadius="50%" src={dev.avatar_url} alt={dev.github_username} />
+        <Img w="54px" h="54px" borderRadius="50%" src={dev.avatar_url ?? "https://www.gov.br/cdn/sso-status-bar/src/image/user.png"} alt={dev.github_username} />
         <Box ml="10px" className="user-info">
           <Text display="block" fontSize="16px" color="#333" fontWeight="bold">{dev.techs.join(', ')}</Text>  
           <Text fontSize="13px" color="#999" mt="2px">{dev.name}</Text>
