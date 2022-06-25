@@ -18,6 +18,7 @@ ListIcon,
 OrderedList,
 UnorderedList,
 } from "@chakra-ui/react";
+import Swal from 'sweetalert2';
 
 export default function DevForm({ onSubmit }) {
   const [github_username, setGithubUsername] = useState('');
@@ -46,17 +47,40 @@ export default function DevForm({ onSubmit }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    await onSubmit({
-      github_username,
-      techs,
-      url,
-      latitude,
-      longitude,
-    });
+    await Swal.fire({
+      imageUrl: url,
+      imageHeight: 300,
+      imageAlt: github_username,
+      title: 'Deseja enviar esta foto?',
+      text: "Não será possível alterar!",
+      // icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#D53F8C',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, enviar!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onSubmit({
+          github_username,
+          techs,
+          url,
+          latitude,
+          longitude,
+        });
+        Swal.fire(
+          'Sucesso!',
+          'A imagem foi enviada.',
+          'success'
+          )
+          setGithubUsername('');
+          setTechs('');
+          setURL('');
+        }
+      })
+      
+      // await 
 
-    setGithubUsername('');
-    setTechs('');
-    setURL('');
+
   }
 
   return (
