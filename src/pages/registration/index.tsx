@@ -24,6 +24,8 @@ import {api} from '../../services/integration';
 import DevForm from '../../components/DevForm'
 import DevItem from '../../components/DevItem';
 
+import { auth } from "../../services/firebase";
+
 export default function Registration() {
   const [devs, setDevs] = useState([]);
 
@@ -49,7 +51,7 @@ export default function Registration() {
   }
 
   return (
-    <Box id="app" display="flex" flexDir={isWideVersion ? "row" : "column"} mt="3rem">
+    <Box id="app" display="flex" flexDir={isWideVersion ? "row" : "column"}  justifyContent="center" mt="3rem">
         <Head>
     <title>Cadastro | SW</title>
     </Head>
@@ -58,13 +60,13 @@ export default function Registration() {
         <DevForm onSubmit={handleAddDev} />
       </Box>
 
-      <Box flex={1}>
+      {auth.currentUser?.uid === 'ONhO5k9W2tcymSb39KTTBKkWZi32' && <Box flex={1}>
         <UnorderedList display="grid" gridTemplateColumns={isWideVersion ? "repeat(2, 1fr)" : "repeat(1, 1fr)" } gridGap="20px" listStyle="none" mr="1rem">
           {devs.map(dev => (
             <DevItem key={dev._id} dev={dev} />
           ))}
         </UnorderedList>
-      </Box>
+      </Box>}
     </Box>
   );
 }

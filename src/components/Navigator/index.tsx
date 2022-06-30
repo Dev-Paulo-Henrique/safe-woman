@@ -319,7 +319,7 @@ import { useRouter } from "next/router";
       ],
     },
     {
-      label: 'Aplicativo',
+      label: 'Download',
       children: [
         {
           label: 'Android',
