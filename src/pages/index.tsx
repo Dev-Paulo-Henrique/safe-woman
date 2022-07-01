@@ -24,10 +24,11 @@ import Head from "next/head";
 import { push, child, ref, set } from "firebase/database";
 import { theme } from "../styles/theme";
 import toast, { Toaster } from "react-hot-toast";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { auth, database } from "../services/firebase";
 import { SmallWithLogoLeft } from "../components/Footer";
 import { Price } from "../components/Table";
+import { Cookie } from "../components/Cookie";
 
 interface HomeProps {
   product: {
@@ -42,6 +43,7 @@ export default function Home({ product }: HomeProps) {
     base: false,
     md: true
   })
+    
   return (
     <Box
       direction="column"
@@ -420,6 +422,7 @@ export default function Home({ product }: HomeProps) {
       <Price/>
       <AboutUs />
       <SmallWithLogoLeft/>
+      {isWideVersion && <Cookie/>}
     </Box>
   );
 }
