@@ -19,6 +19,7 @@ OrderedList,
 UnorderedList,
 } from "@chakra-ui/react";
 import Swal from 'sweetalert2';
+import { auth, database } from "../../services/firebase";
 
 export default function DevForm({ onSubmit }) {
   const [github_username, setGithubUsername] = useState('');
@@ -183,7 +184,8 @@ export default function DevForm({ onSubmit }) {
       color= '#fff'
       _hover={{bg:"#B83280"}}
       transition= 'background 0.5s'
-       type="submit">Salvar</Button>
+       type="submit"
+       isDisabled={ auth.currentUser?.email ? false : true }>Salvar</Button>
     </Box>
   );
 }

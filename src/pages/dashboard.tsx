@@ -93,20 +93,12 @@ const options = {
   }
 }
 
-const adminSeries = [
-  { name: 'Clientes', data: [61, 43, 63, 24, 80, 0, 78, 0, 0, 24, 32, 0] },
-  { name: 'Pagamentos', data: [41, 76, 24, 34, 12, 0, 0, 12, 0, 0, 0, 12] },
-  { name: 'Registros', data: [31, 120, 10, 28, 109, 0, 0, 34, 0, 0, 45, 0] },
-  { name: 'Wendy', data: [11, 32, 45, 32, 34, 0, 0, 0, 0, 0, 67, 0] },
-]
 const series = [
-  { name: 'Registros', data: [31, 120, 10, 28, 109, 0, 0, 34, 0, 0, 45, 0] },
-  { name: 'Relatos', data: [11, 32, 45, 32, 34, 0, 0, 0, 0, 0, 67, 0] },
+  { name: 'Clientes', data: [61, 43, 63, 24, 80, 20, 78, 70, 12, 24, 32, 30] },
+  { name: 'Downloads', data: [11, 32, 45, 32, 34, 20, 40, 30, 60, 20, 67, 70] },
+  { name: 'Pagamentos', data: [41, 76, 24, 34, 12, 30, 50, 12, 50, 90, 20, 12] },
+  { name: 'Registros', data: [31, 120, 10, 28, 109, 70, 10, 34, 40, 40, 45, 60] },
 ]
-
-console.log(auth.currentUser?.uid)
-
-//Função para colocar os meses ONhO5k9W2tcymSb39KTTBKkWZi32
 
 export default function Dashboard() {
   return (
@@ -132,7 +124,7 @@ export default function Dashboard() {
       <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
         <Box p={["6", "8"]} bg="gray.800" borderRadius={8} pb="4">
         <Text fontSize="lg" mb="4">Painel de controle</Text>
-        { auth.currentUser?.uid === 'ONhO5k9W2tcymSb39KTTBKkWZi32' ? <Chart options={options} series={adminSeries} type="area" height={350}/> : <Chart options={options} series={series} type="area" height={350}/> }
+          <Chart options={options} series={series} type="area" height={350}/> 
         </Box>
       </SimpleGrid>
       </Flex>

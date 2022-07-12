@@ -72,7 +72,7 @@ export function Profile({showProfileData = true}: ProfileProps) {
                   </Center>
                   <br />
                   <MenuDivider />
-                  <MenuItem _hover={{bg: "gray.600"}}>Configurações</MenuItem>
+                  {/* <MenuItem _hover={{bg: "gray.600"}}>Configurações</MenuItem> */}
                   <MenuItem _hover={{bg: "gray.600"}} color="tomato" onClick={logOut}>Sair</MenuItem>
                 </MenuList>
               </Menu>
