@@ -324,7 +324,7 @@ import { useRouter } from "next/router";
         {
           label: 'Android',
           subLabel: 'Google Play',
-          href: 'https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40paulohenrique18/safe-woman-52cf555e92c345eba2907007566b1aab-signed.apk',
+          href: 'https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40paulohenrique18/safe-woman-ab4b07086fea401ab9c7c85d1cba36b4-signed.apk',
         },
         {
           label: 'IOS',
