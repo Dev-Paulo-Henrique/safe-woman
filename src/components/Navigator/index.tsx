@@ -329,7 +329,7 @@ import { useRouter } from "next/router";
         {
           label: 'IOS',
           subLabel: 'App Store',
-          href: '#',
+          href: '/download/ios',
         }
       ],
     }
