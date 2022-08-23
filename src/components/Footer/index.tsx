@@ -95,6 +95,10 @@ type FormData = {
 
       const handleSendForm: SubmitHandler<FormData> = async (values)=>{
         await new Promise(resolve => setTimeout(resolve, 2000))
+        setUsername('')
+        setTel('')
+        setEmail('')
+        setMessage('')
         const newPostKey = push(child(ref(database), 'feedback')).key;
         set(ref(database, `feedback/${newPostKey}/`), {
           username: username,
@@ -105,11 +109,6 @@ type FormData = {
           email: email,
           message: message,
         });
-
-        setUsername('')
-        setTel('')
-        setEmail('')
-        setMessage('')
       }
 
 
