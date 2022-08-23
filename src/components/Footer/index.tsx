@@ -106,7 +106,10 @@ type FormData = {
           message: message,
         });
 
-        
+        setUsername('')
+        setTel('')
+        setEmail('')
+        setMessage('')
       }
 
 
