@@ -95,20 +95,21 @@ type FormData = {
 
       const handleSendForm: SubmitHandler<FormData> = async (values)=>{
         await new Promise(resolve => setTimeout(resolve, 2000))
+        // const newPostKey = push(child(ref(database), 'feedback')).key;
+        // set(ref(database, `feedback/${newPostKey}/`), {
+        //   username: username,
+        //   tel: tel,
+        //   date: new Intl.DateTimeFormat('pt-BR', {
+        //     year: 'numeric', month: '2-digit', day: '2-digit'
+        //   }).format(new Date()),
+        //   email: email,
+        //   message: message,
+        // });
         setUsername('')
         setTel('')
         setEmail('')
         setMessage('')
-        const newPostKey = push(child(ref(database), 'feedback')).key;
-        set(ref(database, `feedback/${newPostKey}/`), {
-          username: username,
-          tel: tel,
-          date: new Intl.DateTimeFormat('pt-BR', {
-            year: 'numeric', month: '2-digit', day: '2-digit'
-          }).format(new Date()),
-          email: email,
-          message: message,
-        });
+        toast.success('Formulário enviado')
       }
 
 
@@ -127,12 +128,12 @@ type FormData = {
   <VStack spacing="8">
     <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
     <HStack>
-    <Input name="name" type="text" label="Nome" border="1px" placeholder='e. g: John Smith' {...register('username')} error={errors.username} onChange={(event) => setUsername(event.target.value)} borderColor="gray.200"/>
-    <Input name="telefone" type="tel" label="Telefone" border="1px" placeholder='+55 (xx) xxxx-xxxx' {...register('tel')} error={errors.tel} onChange={(event) => setTel(event.target.value)} borderColor="gray.200"/>
+    <Input name="name" type="text" label="Nome" border="1px" placeholder='e. g: John Smith' {...register('username')} error={errors.username} value={username} onChange={(event) => setUsername(event.target.value)} borderColor="gray.200"/>
+    <Input name="telefone" type="tel" label="Telefone" border="1px" placeholder='+55 (xx) xxxx-xxxx' {...register('tel')} error={errors.tel} value={tel} onChange={(event) => setTel(event.target.value)} borderColor="gray.200"/>
     </HStack>
     </SimpleGrid>
-    <Input name="email" type="email" label="E-mail" border="1px" placeholder='mail@example.com' {...register('email')} error={errors.email} onChange={(event) => setEmail(event.target.value)} borderColor="gray.200"/>
-    <TextArea name="message" label="Mensagem" bgColor="transparent" placeholder='Digite seu texto...' {...register('message')} error={errors.message} onChange={(event) => setMessage(event.target.value)} borderColor="gray.200" border="1px" _hover={{bg:'transparent'}} overflowY="auto"
+    <Input name="email" type="email" label="E-mail" border="1px" placeholder='mail@example.com' {...register('email')} error={errors.email} value={email} onChange={(event) => setEmail(event.target.value)} borderColor="gray.200"/>
+    <TextArea name="message" label="Mensagem" bgColor="transparent" placeholder='Digite seu texto...' {...register('message')} error={errors.message} value={message} onChange={(event) => setMessage(event.target.value)} borderColor="gray.200" border="1px" _hover={{bg:'transparent'}} overflowY="auto"
 css={{
   '&::selection': {
     background: theme.colors.pink[500],
